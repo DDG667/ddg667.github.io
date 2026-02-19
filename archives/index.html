@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>归档 | CPlus's Blog</title><meta name="author" content="CPlus"><meta name="copyright" content="CPlus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="闲得没事写点儿啥">
+<meta property="og:type" content="website">
+<meta property="og:title" content="归档">
+<meta property="og:url" content="http://ddg667.github.io/archives/index.html">
+<meta property="og:site_name" content="CPlus&#39;s Blog">
+<meta property="og:description" content="闲得没事写点儿啥">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ddg667.github.io/res/images/avatar.png">
+<meta property="article:author" content="CPlus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ddg667.github.io/res/images/avatar.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://ddg667.github.io/archives/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://fastly.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '归档',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'archive'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg"></div><script>(() => {
+  const arr = ["background-image: url(/res/images/background_1.jpg);","background-image: url(/res/images/background_2.jpg);"]
+  const webBgDiv = document.getElementById('web_bg')
+
+  const setRandomBg = () => {
+    webBgDiv.style = arr[Math.floor(Math.random() * arr.length)]
+    requestAnimationFrame(() => webBgDiv.classList.add('bg-animation'))
+  }
+
+  document.addEventListener('pjax:send', () => {
+    webBgDiv.style = ''
+    webBgDiv.classList.remove('bg-animation')
+  })
+
+  document.addEventListener('pjax:complete', setRandomBg)
+  document.addEventListener('DOMContentLoaded', setRandomBg)
+})()
+</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/res/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/files"><i class="fa-fw fas fa-folder"></i><span> Files</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">CPlus's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/files"><i class="fa-fw fas fa-folder"></i><span> Files</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">归档</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 2</div><div class="article-sort"><div class="article-sort-item year">2026</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-02-19T07:25:13.000Z" title="发表于 2026-02-19 15:25:13">2026-02-19</time></div><a class="article-sort-item-title" href="/2026/02/19/Arch%20Linux%E6%8E%A8%E8%8D%90/" title="Arch Linux 软件推荐">Arch Linux 软件推荐</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-02-18T11:10:53.000Z" title="发表于 2026-02-18 19:10:53">2026-02-18</time></div><a class="article-sort-item-title" href="/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/" title="人机日志">人机日志</a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/res/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">CPlus</div><div class="author-info-description">闲得没事写点儿啥</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DDG667"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/DDG667" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:namddg667@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/19/Arch%20Linux%E6%8E%A8%E8%8D%90/" title="Arch Linux 软件推荐">Arch Linux 软件推荐</a><time datetime="2026-02-19T07:25:13.000Z" title="发表于 2026-02-19 15:25:13">2026-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/" title="人机日志">人机日志</a><time datetime="2026-02-18T11:10:53.000Z" title="发表于 2026-02-18 19:10:53">2026-02-18</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" style="font-size: 1.1em; color: #999">软件推荐</a> <a href="/tags/Arch-Linux/" style="font-size: 1.1em; color: #999">Arch Linux</a> <a href="/tags/AI%E7%94%9F%E6%88%90/" style="font-size: 1.1em; color: #999">AI生成</a> <a href="/tags/memory/" style="font-size: 1.1em; color: #999">memory</a> <a href="/tags/Linux/" style="font-size: 1.1em; color: #999">Linux</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              二月 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">2</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">1.1k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-19T09:22:22.589Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By CPlus</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><style>#music-modal-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:99999}
+#music-modal{background:#161616;color:#E6EEF3;max-width:720px;width:90%;max-height:80vh;border-radius:8px;overflow:auto;padding:16px;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+#music-modal.dark{background:#0d1117;color:#E6EEF3}
+#music-modal .mm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+#music-modal .mm-header > div{font-weight:600;color:#9d9d9d}
+/* list layout: compact card-like rows (GitHub style) */
+#music-modal .mm-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+#music-modal .mm-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;background:#fff;border:1px solid #e1e4e8;transition:box-shadow .12s ease, background .12s}
+#music-modal .mm-item:hover{box-shadow:0 6px 18px rgba(27,31,35,0.08);background:#f6f8fa}
+/* dark theme adjustments */
+#music-modal.dark .mm-item{background:transparent;border-color:rgba(255,255,255,0.04)}
+#music-modal.dark .mm-item:hover{background:rgba(255,255,255,0.02);box-shadow:none}
+#music-modal .mm-item .mm-meta{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#9d9d9d}
+#music-modal .mm-item button{padding:6px 10px;border-radius:4px;border:1px solid #d0d0d0;background:transparent;color:#9d9d9d;cursor:pointer}
+#music-modal .mm-item button:hover{background:rgba(0,0,0,0.02)}
+#music-modal .mm-item .mm-meta{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#music-modal .mm-player{margin-top:12px}
+/* floating mini player */
+#mm-floating{position:fixed;right:18px;bottom:18px;background:rgba(0,0,0,0.45);color:#E6EEF3;padding:8px 12px;border-radius:8px;display:none;align-items:center;gap:8px;z-index:100000;font-size:13px}
+#mm-floating .mm-f-title{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#9d9d9d}
+#mm-floating button{background:transparent;border:1px solid #d0d0d0;color:#9d9d9d;padding:6px;border-radius:6px;cursor:pointer}
+#mm-floating button:hover{background:rgba(255,255,255,0.02)}
+
+#music-modal .mm-header button{padding:6px 10px;border-radius:6px;border:1px solid #d0d0d0;background:transparent;color:#9d9d9d;cursor:pointer}
+#music-modal .mm-header button:hover{background:rgba(255,255,255,0.02)}
+</style><script>(function(){
+  function createModal(){
+    if(document.getElementById('music-modal-overlay')) return;
+    var overlay = document.createElement('div'); overlay.id = 'music-modal-overlay'; overlay.style.display='none';
+    var box = document.createElement('div'); box.id = 'music-modal';
+    var header = document.createElement('div'); header.className='mm-header';
+    var h = document.createElement('div'); h.textContent='Music';
+    var close = document.createElement('button'); close.textContent='Close'; close.addEventListener('click', closeModal);
+    header.appendChild(h); header.appendChild(close);
+    var list = document.createElement('ul'); list.className='mm-list'; list.id='mm-list';
+    var playerWrap = document.createElement('div'); playerWrap.className='mm-player'; playerWrap.id='mm-player';
+    box.appendChild(header); box.appendChild(list); box.appendChild(playerWrap);
+    overlay.appendChild(box); document.body.appendChild(overlay);
+    overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal();});
+  }
+
+  function openModal(){
+    var overlay = document.getElementById('music-modal-overlay');
+    if(!overlay) createModal(), overlay=document.getElementById('music-modal-overlay');
+    overlay.style.display='flex';
+    syncTheme();
+  }
+
+  function closeModal(){
+    var overlay = document.getElementById('music-modal-overlay'); if(overlay) overlay.style.display='none';
+    // Move audio into floating area so it's not inside hidden modal
+    var audio = document.getElementById('mm-audio');
+    if(audio && !audio.paused){ moveAudioToFloating(); showFloating(); }
+  }
+
+  function buildList(files){
+    openModal();
+    // set playlist for controls
+    playlist = files.slice();
+    currentIndex = -1;
+    var list = document.getElementById('mm-list'); list.innerHTML='';
+    var playerWrap = document.getElementById('mm-player'); playerWrap.innerHTML='';
+    // ensure single persistent audio element
+    var audio = document.getElementById('mm-audio');
+    if(!audio){ audio = document.createElement('audio'); audio.id='mm-audio'; audio.preload='none'; audio.style.width='100%'; audio.controls = true; }
+    // attach event listeners to audio
+    audio.addEventListener('ended', nextTrack);
+    audio.addEventListener('play', updateFloating);
+    audio.addEventListener('pause', updateFloating);
+    playerWrap.appendChild(audio);
+    files.forEach(function(fname){
+      var li = document.createElement('li'); li.className='mm-item';
+      var btn = document.createElement('button'); btn.textContent='Play';
+      var meta = document.createElement('div'); meta.className='mm-meta'; meta.textContent=fname;
+      (function(index){
+        btn.addEventListener('click', function(){ playIndex(index); });
+      })(files.indexOf(fname));
+      li.appendChild(btn); li.appendChild(meta); list.appendChild(li);
+    });
+  }
+
+  function fetchAndShow(){
+    fetch('/res/audios/list.json').then(function(r){ if(!r.ok) throw new Error('no'); return r.json(); }).then(function(data){ if(Array.isArray(data) && data.length) buildList(data); else buildList([]); }).catch(function(){ buildList([]); });
+  }
+
+  function syncTheme(){
+    var el = document.getElementById('music-modal'); if(!el) return;
+    var theme = document.documentElement.getAttribute('data-theme');
+    if(theme === 'dark') el.classList.add('dark'); else el.classList.remove('dark');
+  }
+
+  function onNavClick(e){
+    var a = e.target.closest && e.target.closest('a'); if(!a) return;
+    var hrefRaw = a.getAttribute('href') || '';
+    // normalize href: remove origin, leading/trailing slashes
+    try{ hrefRaw = hrefRaw.replace(/^https?:\/\/[^/]+/, ''); }catch(err){}
+    var href = hrefRaw.replace(/\/+$/,'').replace(/^\//,'');
+    if(href === 'music' || href === 'music/index' || href === 'music/'){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      fetchAndShow();
+    }
+  }
+
+  // playback and floating controls
+  var playlist = [];
+  var currentIndex = -1;
+  function playIndex(i){
+    var files = playlist;
+    if(!files || !files.length) return;
+    if(i < 0) i = 0; if(i >= files.length) i = files.length - 1;
+    currentIndex = i;
+    var audio = document.getElementById('mm-audio'); if(!audio) return;
+    var fname = files[i];
+    var src = '/res/audios/' + encodeURIComponent(fname);
+    if(audio.src !== src){ audio.src = src; }
+    audio.play();
+    updateFloating();
+    showFloating();
+  }
+
+  function nextTrack(){ if(playlist.length){ playIndex((currentIndex+1) % playlist.length); } }
+  function prevTrack(){ if(playlist.length){ playIndex((currentIndex-1+playlist.length) % playlist.length); } }
+  function togglePlay(){ var a = document.getElementById('mm-audio'); if(!a) return; if(a.paused) a.play(); else a.pause(); updateFloating(); }
+
+  function createFloating(){
+    if(document.getElementById('mm-floating')) return;
+    var f = document.createElement('div'); f.id='mm-floating'; f.style.display='none';
+    var prev = document.createElement('button'); prev.textContent='⟨'; prev.addEventListener('click', prevTrack);
+    var play = document.createElement('button'); play.id='mm-f-play'; play.textContent='▶'; play.addEventListener('click', togglePlay);
+    var next = document.createElement('button'); next.textContent='⟩'; next.addEventListener('click', nextTrack);
+    var title = document.createElement('div'); title.className='mm-f-title'; title.id='mm-f-title'; title.textContent='';
+    var close = document.createElement('button'); close.textContent='✕'; close.addEventListener('click', hideFloating);
+    f.appendChild(prev); f.appendChild(play); f.appendChild(next); f.appendChild(title); f.appendChild(close);
+    document.body.appendChild(f);
+  }
+
+  function updateFloating(){
+    var a = document.getElementById('mm-audio'); var f = document.getElementById('mm-floating'); var title = document.getElementById('mm-f-title'); var playBtn = document.getElementById('mm-f-play');
+    if(!f || !a) return;
+    title.textContent = (playlist[currentIndex] || '');
+    playBtn.textContent = a.paused ? '▶' : '⏸';
+  }
+
+  function showFloating(){ createFloating(); var f = document.getElementById('mm-floating'); if(f) f.style.display='flex'; }
+  function hideFloating(){ var f = document.getElementById('mm-floating'); if(f) f.style.display='none'; }
+
+  // Move audio element between modal and floating (append to modal playerWrap when modal open)
+  function moveAudioToModal(){ var audio = document.getElementById('mm-audio'); var playerWrap = document.getElementById('mm-player'); if(audio && playerWrap) playerWrap.appendChild(audio); }
+  function moveAudioToFloating(){ var audio = document.getElementById('mm-audio'); var f = document.getElementById('mm-floating'); if(audio){ if(f) f.appendChild(audio); else document.body.appendChild(audio); } }
+
+  // when audio ends, play next
+  document.addEventListener('DOMContentLoaded', function(){ createFloating(); var audio = document.getElementById('mm-audio'); if(audio){ audio.addEventListener('ended', nextTrack); audio.addEventListener('play', updateFloating); audio.addEventListener('pause', updateFloating); } });
+
+  document.addEventListener('DOMContentLoaded', function(){ createModal(); document.body.addEventListener('click', onNavClick); /* non-capture for safety */ document.documentElement.addEventListener('click', onNavClick, true); /* capture to stop navigation */ });
+  document.addEventListener('pjax:complete', function(){ document.body.addEventListener('click', onNavClick); document.documentElement.addEventListener('click', onNavClick, true); });
+  // Observe data-theme changes on <html> to sync modal theme
+  var obs = new MutationObserver(function(muts){ muts.forEach(function(m){ if(m.attributeName === 'data-theme') syncTheme(); }); });
+  obs.observe(document.documentElement, { attributes: true });
+})();</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1.1.6/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://fastly.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      true
+        ? pjax.loadUrl('/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

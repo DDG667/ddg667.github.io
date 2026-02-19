@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Arch Linux 软件推荐 | CPlus's Blog</title><meta name="author" content="CPlus"><meta name="copyright" content="CPlus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Arch Linux 软件推荐以下是为 Arch Linux 用户精选的一系列实用软件，涵盖了日常使用、开发、多媒体创作、系统工具等多个方面。所有软件均可通过官方仓库或 AUR 轻松安装。  🖥️ 窗口管理器与桌面环境Hyprland一款基于 Wayland 的动态平铺窗口管理器，以出色的视觉效果和高度可定制性著称。它支持动画、圆角、模糊等现代特性，适合追求极致效率和美观的用户。   1sudo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux 软件推荐">
+<meta property="og:url" content="http://ddg667.github.io/2026/02/19/Arch%20Linux%E6%8E%A8%E8%8D%90/index.html">
+<meta property="og:site_name" content="CPlus&#39;s Blog">
+<meta property="og:description" content="Arch Linux 软件推荐以下是为 Arch Linux 用户精选的一系列实用软件，涵盖了日常使用、开发、多媒体创作、系统工具等多个方面。所有软件均可通过官方仓库或 AUR 轻松安装。  🖥️ 窗口管理器与桌面环境Hyprland一款基于 Wayland 的动态平铺窗口管理器，以出色的视觉效果和高度可定制性著称。它支持动画、圆角、模糊等现代特性，适合追求极致效率和美观的用户。   1sudo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ddg667.github.io/res/images/avatar.png">
+<meta property="article:published_time" content="2026-02-19T07:25:13.000Z">
+<meta property="article:modified_time" content="2026-02-19T07:28:13.105Z">
+<meta property="article:author" content="CPlus">
+<meta property="article:tag" content="AI生成">
+<meta property="article:tag" content="Arch Linux">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="软件推荐">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ddg667.github.io/res/images/avatar.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Arch Linux 软件推荐",
+  "url": "http://ddg667.github.io/2026/02/19/Arch%20Linux%E6%8E%A8%E8%8D%90/",
+  "image": "http://ddg667.github.io/res/images/avatar.png",
+  "datePublished": "2026-02-19T07:25:13.000Z",
+  "dateModified": "2026-02-19T07:28:13.105Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "CPlus",
+      "url": "http://ddg667.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://ddg667.github.io/2026/02/19/Arch%20Linux%E6%8E%A8%E8%8D%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://fastly.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Arch Linux 软件推荐',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="bg-animation" id="web_bg"></div><script>(() => {
+  const arr = ["background-image: url(/res/images/background_1.jpg);","background-image: url(/res/images/background_2.jpg);"]
+  const webBgDiv = document.getElementById('web_bg')
+
+  const setRandomBg = () => {
+    webBgDiv.style = arr[Math.floor(Math.random() * arr.length)]
+    requestAnimationFrame(() => webBgDiv.classList.add('bg-animation'))
+  }
+
+  document.addEventListener('pjax:send', () => {
+    webBgDiv.style = ''
+    webBgDiv.classList.remove('bg-animation')
+  })
+
+  document.addEventListener('pjax:complete', setRandomBg)
+  document.addEventListener('DOMContentLoaded', setRandomBg)
+})()
+</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/res/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/files"><i class="fa-fw fas fa-folder"></i><span> Files</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">CPlus's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Arch Linux 软件推荐</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/files"><i class="fa-fw fas fa-folder"></i><span> Files</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Arch Linux 软件推荐</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-19T07:25:13.000Z" title="发表于 2026-02-19 15:25:13">2026-02-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-19T07:28:13.105Z" title="更新于 2026-02-19 15:28:13">2026-02-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Arch-Linux-软件推荐"><a href="#Arch-Linux-软件推荐" class="headerlink" title="Arch Linux 软件推荐"></a>Arch Linux 软件推荐</h1><p>以下是为 Arch Linux 用户精选的一系列实用软件，涵盖了日常使用、开发、多媒体创作、系统工具等多个方面。所有软件均可通过官方仓库或 AUR 轻松安装。</p>
+<hr>
+<h2 id="🖥️-窗口管理器与桌面环境"><a href="#🖥️-窗口管理器与桌面环境" class="headerlink" title="🖥️ 窗口管理器与桌面环境"></a>🖥️ 窗口管理器与桌面环境</h2><h3 id="Hyprland"><a href="#Hyprland" class="headerlink" title="Hyprland"></a>Hyprland</h3><p>一款基于 Wayland 的动态平铺窗口管理器，以出色的视觉效果和高度可定制性著称。它支持动画、圆角、模糊等现代特性，适合追求极致效率和美观的用户。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S hyprland</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🖥️-终端模拟器"><a href="#🖥️-终端模拟器" class="headerlink" title="🖥️ 终端模拟器"></a>🖥️ 终端模拟器</h2><h3 id="Alacritty"><a href="#Alacritty" class="headerlink" title="Alacritty"></a>Alacritty</h3><p>一款使用 OpenGL 渲染的终端模拟器，以速度和简洁为目标。它支持丰富的配置选项，且与 tmux、neovim 等工具配合流畅。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S alacritty</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📝-文本编辑器"><a href="#📝-文本编辑器" class="headerlink" title="📝 文本编辑器"></a>📝 文本编辑器</h2><h3 id="Neovide"><a href="#Neovide" class="headerlink" title="Neovide"></a>Neovide</h3><p>Neovim 的图形化前端，利用 Skia 渲染引擎实现了流畅的动画和现代化的界面。它保留了 Neovim 的全部功能，并添加了鼠标支持、字体连字等特性。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S neovide</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📂-文件管理"><a href="#📂-文件管理" class="headerlink" title="📂 文件管理"></a>📂 文件管理</h2><h3 id="Dolphin"><a href="#Dolphin" class="headerlink" title="Dolphin"></a>Dolphin</h3><p>KDE 项目开发的轻量级文件管理器，界面直观且功能强大，支持标签页、拆分视图、预览面板和版本控制集成。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S dolphin</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ark"><a href="#Ark" class="headerlink" title="Ark"></a>Ark</h3><p>KDE 的归档工具，支持常见压缩格式（zip、tar、7z 等），与 Dolphin 无缝集成，可方便地解压和创建压缩包。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S ark</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🌐-浏览器"><a href="#🌐-浏览器" class="headerlink" title="🌐 浏览器"></a>🌐 浏览器</h2><h3 id="Firefox-Developer-Edition"><a href="#Firefox-Developer-Edition" class="headerlink" title="Firefox Developer Edition"></a>Firefox Developer Edition</h3><p>Mozilla 为开发者打造的 Firefox 版本，内置最新的开发者工具，并支持 CSS 网格布局调试、JavaScript 调试器等高级功能。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从 AUR 安装</span></span><br><span class="line">yay -S firefox-developer-edition</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📚-办公与笔记"><a href="#📚-办公与笔记" class="headerlink" title="📚 办公与笔记"></a>📚 办公与笔记</h2><h3 id="Obsidian"><a href="#Obsidian" class="headerlink" title="Obsidian"></a>Obsidian</h3><p>一款强大的知识库和笔记应用，基于本地 Markdown 文件，支持双向链接、图谱视图和丰富的插件系统，适合构建个人知识网络。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从 AUR 安装</span></span><br><span class="line">yay -S obsidian</span><br></pre></td></tr></table></figure>
+
+<h3 id="GeoGebra"><a href="#GeoGebra" class="headerlink" title="GeoGebra"></a>GeoGebra</h3><p>动态数学软件，集几何、代数、表格、绘图、统计和微积分于一体，是数学教学和学习的利器。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S geogebra</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🎵-多媒体播放"><a href="#🎵-多媒体播放" class="headerlink" title="🎵 多媒体播放"></a>🎵 多媒体播放</h2><h3 id="VLC"><a href="#VLC" class="headerlink" title="VLC"></a>VLC</h3><p>全能的媒体播放器，支持几乎所有音频和视频格式，内置解码器，无需额外安装编解码器。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S vlc</span><br></pre></td></tr></table></figure>
+
+<h3 id="mpv"><a href="#mpv" class="headerlink" title="mpv"></a>mpv</h3><p>极简而强大的命令行视频播放器，基于 MPlayer 和 mplayer2，支持 GPU 加速和脚本扩展，适合追求轻量和高自定义的用户。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S mpv</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🎨-多媒体编辑与创作"><a href="#🎨-多媒体编辑与创作" class="headerlink" title="🎨 多媒体编辑与创作"></a>🎨 多媒体编辑与创作</h2><h3 id="Blender"><a href="#Blender" class="headerlink" title="Blender"></a>Blender</h3><p>开源的 3D 创作套件，支持建模、雕刻、纹理、渲染、动画、视频编辑和游戏制作等全流程，功能媲美商业软件。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S blender</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shotcut"><a href="#Shotcut" class="headerlink" title="Shotcut"></a>Shotcut</h3><p>免费、开源的跨平台视频编辑器，支持多种格式和分辨率，拥有丰富的滤镜和转场效果，界面简洁易用。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S shotcut</span><br></pre></td></tr></table></figure>
+
+<h3 id="GIMP"><a href="#GIMP" class="headerlink" title="GIMP"></a>GIMP</h3><p>GNU 图像处理程序，功能类似于 Photoshop，支持图层、滤镜、画笔和多种图像格式，是平面设计和照片修图的强大工具。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S gimp</span><br></pre></td></tr></table></figure>
+
+<h3 id="Helio"><a href="#Helio" class="headerlink" title="Helio"></a>Helio</h3><p>模块化音乐工作站，专注于旋律创作和编辑，提供直观的钢琴卷帘和节奏编辑器，适合制作电子音乐和学习乐理。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从 AUR 安装（包名 helio-workstation）</span></span><br><span class="line">yay -S helio-workstation</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="⬇️-下载工具"><a href="#⬇️-下载工具" class="headerlink" title="⬇️ 下载工具"></a>⬇️ 下载工具</h2><h3 id="Motrix"><a href="#Motrix" class="headerlink" title="Motrix"></a>Motrix</h3><p>一款简洁美观的下载管理器，支持 HTTP、FTP、BitTorrent 和 Magnet 链接，基于 aria2，可同时管理多个任务。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S motrix</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="⌨️-输入法"><a href="#⌨️-输入法" class="headerlink" title="⌨️ 输入法"></a>⌨️ 输入法</h2><h3 id="Fcitx5"><a href="#Fcitx5" class="headerlink" title="Fcitx5"></a>Fcitx5</h3><p>新一代输入法框架，支持拼音、五笔、仓颉等多种输入法引擎，与 Wayland 兼容良好，配置灵活。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S fcitx5 fcitx5-chinese-addons fcitx5-gtk fcitx5-qt</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📊-系统监控"><a href="#📊-系统监控" class="headerlink" title="📊 系统监控"></a>📊 系统监控</h2><h3 id="Mission-Center"><a href="#Mission-Center" class="headerlink" title="Mission Center"></a>Mission Center</h3><p>一款现代化的系统监控工具，界面仿 Windows 任务管理器，可实时查看 CPU、内存、磁盘、网络和进程信息。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从 AUR 安装</span></span><br><span class="line">yay -S mission-center</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📱-兼容层与虚拟化"><a href="#📱-兼容层与虚拟化" class="headerlink" title="📱 兼容层与虚拟化"></a>📱 兼容层与虚拟化</h2><h3 id="Waydroid"><a href="#Waydroid" class="headerlink" title="Waydroid"></a>Waydroid</h3><p>在 Wayland 会话中运行 Android 应用的容器方案，基于 LXC 和 Anbox 技术，可无缝集成 Android 应用到 Linux 桌面。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S waydroid</span><br></pre></td></tr></table></figure>
+
+<h3 id="Wine"><a href="#Wine" class="headerlink" title="Wine"></a>Wine</h3><p>Windows 应用兼容层，允许在 Linux 上运行 Windows 程序。WineHQ 是 Wine 的官方版本，提供最全面的兼容性支持。  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S wine</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>以上软件均经过精心挑选，覆盖了 Arch Linux 用户可能涉及的多个领域。你可以根据自己的需求选择安装，享受 Arch 带来的自由与高效。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://ddg667.github.io">CPlus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://ddg667.github.io/2026/02/19/Arch%20Linux%E6%8E%A8%E8%8D%90/">http://ddg667.github.io/2026/02/19/Arch%20Linux%E6%8E%A8%E8%8D%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://ddg667.github.io" target="_blank">CPlus's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Arch-Linux/">Arch Linux</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/">软件推荐</a><a class="post-meta__tags" href="/tags/AI%E7%94%9F%E6%88%90/">AI生成</a></div><div class="post-share"><div class="social-share" data-image="/res/images/avatar.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/" title="人机日志"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">人机日志</div></div><div class="info-2"><div class="info-item-1">世界已经改变，谁还在留恋 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/res/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">CPlus</div><div class="author-info-description">闲得没事写点儿啥</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DDG667"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/DDG667" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:namddg667@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Arch-Linux-%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90"><span class="toc-number">1.</span> <span class="toc-text">Arch Linux 软件推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%96%A5%EF%B8%8F-%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%8E%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">🖥️ 窗口管理器与桌面环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hyprland"><span class="toc-number">1.1.1.</span> <span class="toc-text">Hyprland</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%96%A5%EF%B8%8F-%E7%BB%88%E7%AB%AF%E6%A8%A1%E6%8B%9F%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">🖥️ 终端模拟器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Alacritty"><span class="toc-number">1.2.1.</span> <span class="toc-text">Alacritty</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D-%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">📝 文本编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neovide"><span class="toc-number">1.3.1.</span> <span class="toc-text">Neovide</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%82-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">📂 文件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dolphin"><span class="toc-number">1.4.1.</span> <span class="toc-text">Dolphin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ark"><span class="toc-number">1.4.2.</span> <span class="toc-text">Ark</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text">🌐 浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Firefox-Developer-Edition"><span class="toc-number">1.5.1.</span> <span class="toc-text">Firefox Developer Edition</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E5%8A%9E%E5%85%AC%E4%B8%8E%E7%AC%94%E8%AE%B0"><span class="toc-number">1.6.</span> <span class="toc-text">📚 办公与笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Obsidian"><span class="toc-number">1.6.1.</span> <span class="toc-text">Obsidian</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GeoGebra"><span class="toc-number">1.6.2.</span> <span class="toc-text">GeoGebra</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%B5-%E5%A4%9A%E5%AA%92%E4%BD%93%E6%92%AD%E6%94%BE"><span class="toc-number">1.7.</span> <span class="toc-text">🎵 多媒体播放</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VLC"><span class="toc-number">1.7.1.</span> <span class="toc-text">VLC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mpv"><span class="toc-number">1.7.2.</span> <span class="toc-text">mpv</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%A8-%E5%A4%9A%E5%AA%92%E4%BD%93%E7%BC%96%E8%BE%91%E4%B8%8E%E5%88%9B%E4%BD%9C"><span class="toc-number">1.8.</span> <span class="toc-text">🎨 多媒体编辑与创作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Blender"><span class="toc-number">1.8.1.</span> <span class="toc-text">Blender</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shotcut"><span class="toc-number">1.8.2.</span> <span class="toc-text">Shotcut</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GIMP"><span class="toc-number">1.8.3.</span> <span class="toc-text">GIMP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Helio"><span class="toc-number">1.8.4.</span> <span class="toc-text">Helio</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%AC%87%EF%B8%8F-%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7"><span class="toc-number">1.9.</span> <span class="toc-text">⬇️ 下载工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Motrix"><span class="toc-number">1.9.1.</span> <span class="toc-text">Motrix</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%8C%A8%EF%B8%8F-%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">1.10.</span> <span class="toc-text">⌨️ 输入法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fcitx5"><span class="toc-number">1.10.1.</span> <span class="toc-text">Fcitx5</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8A-%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7"><span class="toc-number">1.11.</span> <span class="toc-text">📊 系统监控</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mission-Center"><span class="toc-number">1.11.1.</span> <span class="toc-text">Mission Center</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%B1-%E5%85%BC%E5%AE%B9%E5%B1%82%E4%B8%8E%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-number">1.12.</span> <span class="toc-text">📱 兼容层与虚拟化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Waydroid"><span class="toc-number">1.12.1.</span> <span class="toc-text">Waydroid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wine"><span class="toc-number">1.12.2.</span> <span class="toc-text">Wine</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/19/Arch%20Linux%E6%8E%A8%E8%8D%90/" title="Arch Linux 软件推荐">Arch Linux 软件推荐</a><time datetime="2026-02-19T07:25:13.000Z" title="发表于 2026-02-19 15:25:13">2026-02-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/" title="人机日志">人机日志</a><time datetime="2026-02-18T11:10:53.000Z" title="发表于 2026-02-18 19:10:53">2026-02-18</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By CPlus</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://fastly.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://fastly.jsdelivr.net/npm/katex@0.16.28/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><style>#music-modal-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:99999}
+#music-modal{background:#161616;color:#E6EEF3;max-width:720px;width:90%;max-height:80vh;border-radius:8px;overflow:auto;padding:16px;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+#music-modal.dark{background:#0d1117;color:#E6EEF3}
+#music-modal .mm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+#music-modal .mm-header > div{font-weight:600;color:#9d9d9d}
+/* list layout: compact card-like rows (GitHub style) */
+#music-modal .mm-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+#music-modal .mm-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:6px;background:#fff;border:1px solid #e1e4e8;transition:box-shadow .12s ease, background .12s}
+#music-modal .mm-item:hover{box-shadow:0 6px 18px rgba(27,31,35,0.08);background:#f6f8fa}
+/* dark theme adjustments */
+#music-modal.dark .mm-item{background:transparent;border-color:rgba(255,255,255,0.04)}
+#music-modal.dark .mm-item:hover{background:rgba(255,255,255,0.02);box-shadow:none}
+#music-modal .mm-item .mm-meta{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#9d9d9d}
+#music-modal .mm-item button{padding:6px 10px;border-radius:4px;border:1px solid #d0d0d0;background:transparent;color:#9d9d9d;cursor:pointer}
+#music-modal .mm-item button:hover{background:rgba(0,0,0,0.02)}
+#music-modal .mm-item .mm-meta{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#music-modal .mm-player{margin-top:12px}
+/* floating mini player */
+#mm-floating{position:fixed;right:18px;bottom:18px;background:rgba(0,0,0,0.45);color:#E6EEF3;padding:8px 12px;border-radius:8px;display:none;align-items:center;gap:8px;z-index:100000;font-size:13px}
+#mm-floating .mm-f-title{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#9d9d9d}
+#mm-floating button{background:transparent;border:1px solid #d0d0d0;color:#9d9d9d;padding:6px;border-radius:6px;cursor:pointer}
+#mm-floating button:hover{background:rgba(255,255,255,0.02)}
+
+#music-modal .mm-header button{padding:6px 10px;border-radius:6px;border:1px solid #d0d0d0;background:transparent;color:#9d9d9d;cursor:pointer}
+#music-modal .mm-header button:hover{background:rgba(255,255,255,0.02)}
+</style><script>(function(){
+  function createModal(){
+    if(document.getElementById('music-modal-overlay')) return;
+    var overlay = document.createElement('div'); overlay.id = 'music-modal-overlay'; overlay.style.display='none';
+    var box = document.createElement('div'); box.id = 'music-modal';
+    var header = document.createElement('div'); header.className='mm-header';
+    var h = document.createElement('div'); h.textContent='Music';
+    var close = document.createElement('button'); close.textContent='Close'; close.addEventListener('click', closeModal);
+    header.appendChild(h); header.appendChild(close);
+    var list = document.createElement('ul'); list.className='mm-list'; list.id='mm-list';
+    var playerWrap = document.createElement('div'); playerWrap.className='mm-player'; playerWrap.id='mm-player';
+    box.appendChild(header); box.appendChild(list); box.appendChild(playerWrap);
+    overlay.appendChild(box); document.body.appendChild(overlay);
+    overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal();});
+  }
+
+  function openModal(){
+    var overlay = document.getElementById('music-modal-overlay');
+    if(!overlay) createModal(), overlay=document.getElementById('music-modal-overlay');
+    overlay.style.display='flex';
+    syncTheme();
+  }
+
+  function closeModal(){
+    var overlay = document.getElementById('music-modal-overlay'); if(overlay) overlay.style.display='none';
+    // Move audio into floating area so it's not inside hidden modal
+    var audio = document.getElementById('mm-audio');
+    if(audio && !audio.paused){ moveAudioToFloating(); showFloating(); }
+  }
+
+  function buildList(files){
+    openModal();
+    // set playlist for controls
+    playlist = files.slice();
+    currentIndex = -1;
+    var list = document.getElementById('mm-list'); list.innerHTML='';
+    var playerWrap = document.getElementById('mm-player'); playerWrap.innerHTML='';
+    // ensure single persistent audio element
+    var audio = document.getElementById('mm-audio');
+    if(!audio){ audio = document.createElement('audio'); audio.id='mm-audio'; audio.preload='none'; audio.style.width='100%'; audio.controls = true; }
+    // attach event listeners to audio
+    audio.addEventListener('ended', nextTrack);
+    audio.addEventListener('play', updateFloating);
+    audio.addEventListener('pause', updateFloating);
+    playerWrap.appendChild(audio);
+    files.forEach(function(fname){
+      var li = document.createElement('li'); li.className='mm-item';
+      var btn = document.createElement('button'); btn.textContent='Play';
+      var meta = document.createElement('div'); meta.className='mm-meta'; meta.textContent=fname;
+      (function(index){
+        btn.addEventListener('click', function(){ playIndex(index); });
+      })(files.indexOf(fname));
+      li.appendChild(btn); li.appendChild(meta); list.appendChild(li);
+    });
+  }
+
+  function fetchAndShow(){
+    fetch('/res/audios/list.json').then(function(r){ if(!r.ok) throw new Error('no'); return r.json(); }).then(function(data){ if(Array.isArray(data) && data.length) buildList(data); else buildList([]); }).catch(function(){ buildList([]); });
+  }
+
+  function syncTheme(){
+    var el = document.getElementById('music-modal'); if(!el) return;
+    var theme = document.documentElement.getAttribute('data-theme');
+    if(theme === 'dark') el.classList.add('dark'); else el.classList.remove('dark');
+  }
+
+  function onNavClick(e){
+    var a = e.target.closest && e.target.closest('a'); if(!a) return;
+    var hrefRaw = a.getAttribute('href') || '';
+    // normalize href: remove origin, leading/trailing slashes
+    try{ hrefRaw = hrefRaw.replace(/^https?:\/\/[^/]+/, ''); }catch(err){}
+    var href = hrefRaw.replace(/\/+$/,'').replace(/^\//,'');
+    if(href === 'music' || href === 'music/index' || href === 'music/'){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      fetchAndShow();
+    }
+  }
+
+  // playback and floating controls
+  var playlist = [];
+  var currentIndex = -1;
+  function playIndex(i){
+    var files = playlist;
+    if(!files || !files.length) return;
+    if(i < 0) i = 0; if(i >= files.length) i = files.length - 1;
+    currentIndex = i;
+    var audio = document.getElementById('mm-audio'); if(!audio) return;
+    var fname = files[i];
+    var src = '/res/audios/' + encodeURIComponent(fname);
+    if(audio.src !== src){ audio.src = src; }
+    audio.play();
+    updateFloating();
+    showFloating();
+  }
+
+  function nextTrack(){ if(playlist.length){ playIndex((currentIndex+1) % playlist.length); } }
+  function prevTrack(){ if(playlist.length){ playIndex((currentIndex-1+playlist.length) % playlist.length); } }
+  function togglePlay(){ var a = document.getElementById('mm-audio'); if(!a) return; if(a.paused) a.play(); else a.pause(); updateFloating(); }
+
+  function createFloating(){
+    if(document.getElementById('mm-floating')) return;
+    var f = document.createElement('div'); f.id='mm-floating'; f.style.display='none';
+    var prev = document.createElement('button'); prev.textContent='⟨'; prev.addEventListener('click', prevTrack);
+    var play = document.createElement('button'); play.id='mm-f-play'; play.textContent='▶'; play.addEventListener('click', togglePlay);
+    var next = document.createElement('button'); next.textContent='⟩'; next.addEventListener('click', nextTrack);
+    var title = document.createElement('div'); title.className='mm-f-title'; title.id='mm-f-title'; title.textContent='';
+    var close = document.createElement('button'); close.textContent='✕'; close.addEventListener('click', hideFloating);
+    f.appendChild(prev); f.appendChild(play); f.appendChild(next); f.appendChild(title); f.appendChild(close);
+    document.body.appendChild(f);
+  }
+
+  function updateFloating(){
+    var a = document.getElementById('mm-audio'); var f = document.getElementById('mm-floating'); var title = document.getElementById('mm-f-title'); var playBtn = document.getElementById('mm-f-play');
+    if(!f || !a) return;
+    title.textContent = (playlist[currentIndex] || '');
+    playBtn.textContent = a.paused ? '▶' : '⏸';
+  }
+
+  function showFloating(){ createFloating(); var f = document.getElementById('mm-floating'); if(f) f.style.display='flex'; }
+  function hideFloating(){ var f = document.getElementById('mm-floating'); if(f) f.style.display='none'; }
+
+  // Move audio element between modal and floating (append to modal playerWrap when modal open)
+  function moveAudioToModal(){ var audio = document.getElementById('mm-audio'); var playerWrap = document.getElementById('mm-player'); if(audio && playerWrap) playerWrap.appendChild(audio); }
+  function moveAudioToFloating(){ var audio = document.getElementById('mm-audio'); var f = document.getElementById('mm-floating'); if(audio){ if(f) f.appendChild(audio); else document.body.appendChild(audio); } }
+
+  // when audio ends, play next
+  document.addEventListener('DOMContentLoaded', function(){ createFloating(); var audio = document.getElementById('mm-audio'); if(audio){ audio.addEventListener('ended', nextTrack); audio.addEventListener('play', updateFloating); audio.addEventListener('pause', updateFloating); } });
+
+  document.addEventListener('DOMContentLoaded', function(){ createModal(); document.body.addEventListener('click', onNavClick); /* non-capture for safety */ document.documentElement.addEventListener('click', onNavClick, true); /* capture to stop navigation */ });
+  document.addEventListener('pjax:complete', function(){ document.body.addEventListener('click', onNavClick); document.documentElement.addEventListener('click', onNavClick, true); });
+  // Observe data-theme changes on <html> to sync modal theme
+  var obs = new MutationObserver(function(muts){ muts.forEach(function(m){ if(m.attributeName === 'data-theme') syncTheme(); }); });
+  obs.observe(document.documentElement, { attributes: true });
+})();</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1.1.6/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://fastly.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      true
+        ? pjax.loadUrl('/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
