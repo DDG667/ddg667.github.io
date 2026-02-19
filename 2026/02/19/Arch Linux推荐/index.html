@@ -413,8 +413,10 @@
   function hideFloating(){ var f = document.getElementById('mm-floating'); if(f) f.style.display='none'; }
 
   // Move audio element between modal and floating (append to modal playerWrap when modal open)
-  function moveAudioToModal(){ var audio = document.getElementById('mm-audio'); var playerWrap = document.getElementById('mm-player'); if(audio && playerWrap) playerWrap.appendChild(audio); }
-  function moveAudioToFloating(){ var audio = document.getElementById('mm-audio'); var f = document.getElementById('mm-floating'); if(audio){ if(f) f.appendChild(audio); else document.body.appendChild(audio); } }
+  function moveAudioToModal(){ var audio = document.getElementById('mm-audio'); var playerWrap = document.getElementById('mm-player'); if(!audio || !playerWrap) return; try{ audio.controls = true; audio.style.display = ''; audio.style.width = '100%'; }catch(e){} playerWrap.appendChild(audio); }
+  function moveAudioToFloating(){ var audio = document.getElementById('mm-audio'); var f = document.getElementById('mm-floating'); if(!audio) return; // hide native controls to avoid duplicate play/pause button
+    try{ audio.controls = false; audio.style.display = 'none'; }catch(e){}
+    if(f) f.appendChild(audio); else document.body.appendChild(audio); }
 
   // when audio ends, play next
   document.addEventListener('DOMContentLoaded', function(){ createFloating(); var audio = document.getElementById('mm-audio'); if(audio){ audio.addEventListener('ended', nextTrack); audio.addEventListener('play', updateFloating); audio.addEventListener('pause', updateFloating); } });

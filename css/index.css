@@ -1933,6 +1933,35 @@ blockquote > :last-child {
   width: 1.25em;
   text-align: center;
 }
+#page-header,
+#site-info,
+#menus,
+.menus_items,
+.menus_item,
+#toggle-menu,
+#nav,
+.aside-content,
+#aside-content,
+.aside-list,
+.aside-list-item,
+.card-widget,
+.sticky_layout,
+#site_social_icons,
+#site-social-icons,
+#scroll-down,
+#site-title,
+#site-subtitle,
+.avatar-img {
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: alpha(opacity=90);
+}
+#article-container,
+#article-container * {
+  opacity: 1 !important;
+  -ms-filter: none !important;
+  filter: none !important;
+}
 :root {
   --hl-color: #eff;
   --hl-bg: #212121;
