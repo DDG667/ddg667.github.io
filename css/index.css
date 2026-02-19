@@ -1951,10 +1951,26 @@ blockquote > :last-child {
 #scroll-down,
 #site-title,
 #site-subtitle,
-.avatar-img {
-  opacity: 0.9;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
-  filter: alpha(opacity=90);
+.avatar-img,
+.mobile-menu,
+#mobile-menu,
+.nav-mobile,
+.mobile-nav,
+.site-page.mobile,
+.site-page.group.mobile,
+.search-dialog,
+#search-mask,
+#music-modal-overlay,
+#music-modal,
+#mm-floating,
+.mm-item,
+.mm-list,
+.mm-player,
+.file-list,
+.file-row {
+  opacity: 0.95 !important;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)" !important;
+  filter: alpha(opacity=95) !important;
 }
 #article-container,
 #article-container * {
