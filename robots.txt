@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://namddg667.top/sitemap.xml
+Sitemap: https://namddg667.top/atom.xml
