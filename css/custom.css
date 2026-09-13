@@ -23,9 +23,9 @@
 
 [data-theme='light'] {
   --ui-glass-border: rgba(15, 25, 40, .07);
-  --ui-glass-bg: rgba(255, 255, 255, .72);
-  --ui-glass-bg-strong: rgba(255, 255, 255, .88);
-  --ui-glass-bg-hover: rgba(255, 255, 255, .86);
+  --ui-glass-bg: rgba(255, 255, 255, .78);
+  --ui-glass-bg-strong: rgba(255, 255, 255, .9);
+  --ui-glass-bg-hover: rgba(255, 255, 255, .92);
   --ui-row-bg: rgba(15, 25, 40, .025);
   --ui-row-bg-hover: rgba(74, 158, 255, .08);
   --ui-shadow: 0 10px 30px -14px rgba(31, 45, 61, .35);
@@ -38,7 +38,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, .42);
+  background-color: rgba(255, 255, 255, .55);
   content: '';
 }
 
@@ -558,8 +558,45 @@
   color: var(--ui-accent);
 }
 
-#rightside > div > button:hover {
+#rightside > div > button,
+#rightside > div > a {
+  background: var(--ui-glass-bg-strong);
+  color: var(--ui-accent);
+  border: 1px solid var(--ui-glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#rightside > div > button:hover,
+#rightside > div > a:hover {
   background: var(--ui-accent);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   9. Footer
+   -------------------------------------------------------------------------- */
+#footer {
+  background-color: transparent;
+  background-image: none;
+  border-top: 1px solid var(--ui-glass-border);
+  background: var(--ui-glass-bg-strong);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+#footer > *,
+#footer a {
+  color: var(--card-meta);
+}
+
+#footer a:hover {
+  color: var(--ui-accent);
+}
+
+#footer .footer-other {
+  padding: 24px 20px;
+  background-color: transparent;
 }
 
 /* Smooth in-page anchor scrolling without disturbing the fixed nav */
