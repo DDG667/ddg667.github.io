@@ -1,41 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>人机日志</title>
-    <url>/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<p>世界已经改变，谁还在留恋?</p>
-]]></content>
-      <tags>
-        <tag>memory</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>萌狐云服务器搭建博客命令整合</title>
-    <url>/2026/08/14/%E5%93%86%E8%90%8C%E7%8B%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h5 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm :"></a>安装 nvm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash</span><br></pre></td></tr></table></figure>
-<h5 id="安装-npm"><a href="#安装-npm" class="headerlink" title="安装 npm :"></a>安装 npm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
-<h5 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo :"></a>安装 hexo :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-<h5 id="创建个人博客"><a href="#创建个人博客" class="headerlink" title="创建个人博客:"></a>创建个人博客:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init [你想要的博客名]</span><br></pre></td></tr></table></figure>
-<h5 id="切换到博客根目录"><a href="#切换到博客根目录" class="headerlink" title="切换到博客根目录:"></a>切换到博客根目录:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> [你想要的博客名]</span><br></pre></td></tr></table></figure>
-<h5 id="安装所需包"><a href="#安装所需包" class="headerlink" title="安装所需包"></a>安装所需包</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<h5 id="安装-buttferfly-主题"><a href="#安装-buttferfly-主题" class="headerlink" title="安装 buttferfly 主题:"></a>安装 buttferfly 主题:</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-theme-butterfly</span><br></pre></td></tr></table></figure>
-<h5 id="创建你的第一篇文章"><a href="#创建你的第一篇文章" class="headerlink" title="创建你的第一篇文章:"></a>创建你的第一篇文章:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [文章名]</span><br></pre></td></tr></table></figure>
-<p>此时文章会被放在 <code>source/_posts</code> 目录中，以后随便找个markdown编辑器写</p>
-<h5 id="生产静态文件"><a href="#生产静态文件" class="headerlink" title="生产静态文件"></a>生产静态文件</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-<p>此时网页文件会在 <code>public/</code> 下生成</p>
-<h5 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<h5 id="这里放一下-hexo-和-butterfly-的网页"><a href="#这里放一下-hexo-和-butterfly-的网页" class="headerlink" title="这里放一下 hexo 和 butterfly 的网页"></a>这里放一下 hexo 和 butterfly 的网页</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://hexo.io</span><br><span class="line">https://butterfly.js.org</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="视频为一个人在三天完成，不妥之处见谅"><a href="#视频为一个人在三天完成，不妥之处见谅" class="headerlink" title="视频为一个人在三天完成，不妥之处见谅"></a>视频为一个人在三天完成，不妥之处见谅</h2><h3 id="配音-达妮娅-GPT-SoVITs"><a href="#配音-达妮娅-GPT-SoVITs" class="headerlink" title="配音: 达妮娅 GPT-SoVITs"></a>配音: 达妮娅 GPT-SoVITs</h3><h3 id="所使用到的软件-Kdenlive-Blender"><a href="#所使用到的软件-Kdenlive-Blender" class="headerlink" title="所使用到的软件: Kdenlive, Blender"></a>所使用到的软件: Kdenlive, Blender</h3>]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>教程</tag>
-        <tag>博客</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Arch Linux 使用 Lutris + DWProton 运行鸣潮 | Linux 游戏折腾记录</title>
     <url>/2026/08/13/Arch%20Linux%20%E4%BD%BF%E7%94%A8%20DWProton%20%E7%8E%A9%E9%B8%A3%E6%BD%AE%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本人为 Arch Linux + N卡用户，玩了几个月，体验下来还不错</span><br></pre></td></tr></table></figure>
@@ -170,8 +135,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>Linux</tag>
         <tag>Game</tag>
+        <tag>Linux</tag>
         <tag>Wine</tag>
         <tag>proton</tag>
         <tag>鸣潮</tag>
@@ -255,8 +220,8 @@
 <p>以上软件均经过精心挑选，覆盖了 Arch Linux 用户可能涉及的多个领域。你可以根据自己的需求选择安装，享受 Arch 带来的自由与高效。</p>
 ]]></content>
       <tags>
-        <tag>Arch Linux</tag>
         <tag>Linux</tag>
+        <tag>Arch Linux</tag>
         <tag>软件推荐</tag>
         <tag>AI生成</tag>
       </tags>
@@ -299,6 +264,41 @@
         <tag>Linux</tag>
         <tag>JLU</tag>
         <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人机日志</title>
+    <url>/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<p>世界已经改变，谁还在留恋?</p>
+]]></content>
+      <tags>
+        <tag>memory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>萌狐云服务器搭建博客命令整合</title>
+    <url>/2026/08/14/%E5%93%86%E8%90%8C%E7%8B%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h5 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm :"></a>安装 nvm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash</span><br></pre></td></tr></table></figure>
+<h5 id="安装-npm"><a href="#安装-npm" class="headerlink" title="安装 npm :"></a>安装 npm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
+<h5 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo :"></a>安装 hexo :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h5 id="创建个人博客"><a href="#创建个人博客" class="headerlink" title="创建个人博客:"></a>创建个人博客:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init [你想要的博客名]</span><br></pre></td></tr></table></figure>
+<h5 id="切换到博客根目录"><a href="#切换到博客根目录" class="headerlink" title="切换到博客根目录:"></a>切换到博客根目录:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> [你想要的博客名]</span><br></pre></td></tr></table></figure>
+<h5 id="安装所需包"><a href="#安装所需包" class="headerlink" title="安装所需包"></a>安装所需包</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h5 id="安装-buttferfly-主题"><a href="#安装-buttferfly-主题" class="headerlink" title="安装 buttferfly 主题:"></a>安装 buttferfly 主题:</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-theme-butterfly</span><br></pre></td></tr></table></figure>
+<h5 id="创建你的第一篇文章"><a href="#创建你的第一篇文章" class="headerlink" title="创建你的第一篇文章:"></a>创建你的第一篇文章:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [文章名]</span><br></pre></td></tr></table></figure>
+<p>此时文章会被放在 <code>source/_posts</code> 目录中，以后随便找个markdown编辑器写</p>
+<h5 id="生产静态文件"><a href="#生产静态文件" class="headerlink" title="生产静态文件"></a>生产静态文件</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>此时网页文件会在 <code>public/</code> 下生成</p>
+<h5 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h5 id="这里放一下-hexo-和-butterfly-的网页"><a href="#这里放一下-hexo-和-butterfly-的网页" class="headerlink" title="这里放一下 hexo 和 butterfly 的网页"></a>这里放一下 hexo 和 butterfly 的网页</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://hexo.io</span><br><span class="line">https://butterfly.js.org</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="视频为一个人在三天完成，不妥之处见谅"><a href="#视频为一个人在三天完成，不妥之处见谅" class="headerlink" title="视频为一个人在三天完成，不妥之处见谅"></a>视频为一个人在三天完成，不妥之处见谅</h2><h3 id="配音-达妮娅-GPT-SoVITs"><a href="#配音-达妮娅-GPT-SoVITs" class="headerlink" title="配音: 达妮娅 GPT-SoVITs"></a>配音: 达妮娅 GPT-SoVITs</h3><h3 id="所使用到的软件-Kdenlive-Blender"><a href="#所使用到的软件-Kdenlive-Blender" class="headerlink" title="所使用到的软件: Kdenlive, Blender"></a>所使用到的软件: Kdenlive, Blender</h3>]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>教程</tag>
+        <tag>博客</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
