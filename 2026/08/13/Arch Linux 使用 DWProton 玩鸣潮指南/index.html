@@ -755,6 +755,8 @@ div.hcb-content.hcb-cards-content.active {
     var footer = document.createElement('div');
     footer.className = 'mm-footer';
     footer.innerHTML = '<a href="/music/"><i class="fa-solid fa-up-right-from-square"></i> 打开独立播放页</a>';
+    var pageLink = footer.querySelector('a');
+    if (pageLink) pageLink.addEventListener('click', closeModal);
 
     box.appendChild(header);
     box.appendChild(list);
@@ -827,10 +829,12 @@ div.hcb-content.hcb-cards-content.active {
   }
 
   // Intercept nav clicks on the Music link so it opens the quick-select modal.
+  // Only links inside the navigation / mobile sidebar are intercepted; other
+  // links to /music (e.g. the modal footer) must navigate normally.
   function onNavClick(e){
     if (e.defaultPrevented) return;
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    var a = e.target.closest && e.target.closest('a');
+    var a = e.target.closest && e.target.closest('#nav a[href], #sidebar-menus a[href]');
     if (!a || a.target === '_blank') return;
     var hrefRaw = a.getAttribute('href') || '';
     try { hrefRaw = hrefRaw.replace(/^https?:\/\/[^/]+/, ''); } catch (err) {}
