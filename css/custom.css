@@ -1,0 +1,575 @@
+/* ==========================================================================
+   CPlus Blog - UI enhancement layer
+   Glassmorphism over wallpaper. Loaded after the theme CSS via inject.head.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+:root {
+  --ui-accent: #4a9eff;
+  --ui-accent-soft: rgba(74, 158, 255, .16);
+  --ui-glass-blur: 14px;
+  --ui-glass-border: rgba(255, 255, 255, .09);
+  --ui-glass-bg: rgba(17, 19, 25, .62);
+  --ui-glass-bg-strong: rgba(15, 17, 22, .82);
+  --ui-glass-bg-hover: rgba(26, 30, 38, .74);
+  --ui-row-bg: rgba(255, 255, 255, .035);
+  --ui-row-bg-hover: rgba(255, 255, 255, .07);
+  --ui-shadow: 0 10px 30px -12px rgba(0, 0, 0, .55);
+  --ui-shadow-hover: 0 16px 40px -14px rgba(0, 0, 0, .65);
+  --ui-radius: 12px;
+}
+
+[data-theme='light'] {
+  --ui-glass-border: rgba(15, 25, 40, .07);
+  --ui-glass-bg: rgba(255, 255, 255, .72);
+  --ui-glass-bg-strong: rgba(255, 255, 255, .88);
+  --ui-glass-bg-hover: rgba(255, 255, 255, .86);
+  --ui-row-bg: rgba(15, 25, 40, .025);
+  --ui-row-bg-hover: rgba(74, 158, 255, .08);
+  --ui-shadow: 0 10px 30px -14px rgba(31, 45, 61, .35);
+  --ui-shadow-hover: 0 16px 40px -16px rgba(31, 45, 61, .45);
+}
+
+/* The theme paints a 70% black veil over the wallpaper in dark mode.
+   Add a matching veil for light mode so glass cards keep their contrast. */
+[data-theme='light'] #web_bg:before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, .42);
+  content: '';
+}
+
+/* --------------------------------------------------------------------------
+   2. Glass cards
+   -------------------------------------------------------------------------- */
+.recent-post-item,
+.card-widget,
+.layout > div:first-child:not(.nc),
+.type-404 .error-content {
+  border: 1px solid var(--ui-glass-border);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow);
+  backdrop-filter: blur(var(--ui-glass-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--ui-glass-blur)) saturate(140%);
+}
+
+.recent-post-item {
+  opacity: 1;
+}
+
+.recent-post-item:hover,
+.card-widget:hover,
+.type-404 .error-content:hover {
+  box-shadow: var(--ui-shadow-hover);
+}
+
+/* Pagination buttons keep the glass tint but a lighter border radius */
+.pagination > *:not(.space) {
+  border: 1px solid var(--ui-glass-border);
+  border-radius: 10px;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .recent-post-item,
+  .card-widget,
+  .layout > div:first-child:not(.nc),
+  .type-404 .error-content {
+    background: var(--ui-glass-bg-strong);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Top banner / hero
+   -------------------------------------------------------------------------- */
+@supports (height: 100svh) {
+  #page-header.full_page {
+    height: 100svh;
+  }
+}
+
+/* Replace the flat mask with a gradient so the title stays legible
+   while the wallpaper remains visible. */
+#page-header:not(.not-top-img):before {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 10, 14, .52) 0%,
+    rgba(8, 10, 14, .38) 38%,
+    rgba(8, 10, 14, .52) 72%,
+    rgba(8, 10, 14, .86) 100%
+  );
+}
+
+#page-header.full_page #site-title {
+  letter-spacing: .04em;
+}
+
+#page-header.full_page #site-subtitle {
+  opacity: .92;
+}
+
+/* --------------------------------------------------------------------------
+   4. Navigation bar
+   -------------------------------------------------------------------------- */
+#page-header.nav-fixed #nav,
+#page-header.fixed #nav {
+  background: rgba(14, 16, 21, .58);
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, .9);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+#page-header.not-top-img #nav {
+  background: var(--ui-glass-bg);
+  border-bottom: 1px solid var(--ui-glass-border);
+  box-shadow: var(--ui-shadow);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+[data-theme='light'] #page-header.nav-fixed #nav,
+[data-theme='light'] #page-header.fixed #nav {
+  background: rgba(255, 255, 255, .68);
+  border-bottom: 1px solid rgba(15, 25, 40, .06);
+  box-shadow: 0 10px 30px -20px rgba(31, 45, 61, .5);
+}
+
+[data-theme='light'] #page-header.not-top-img #nav {
+  background: var(--ui-glass-bg);
+}
+
+#nav .site-page:not(.child):after {
+  background-color: var(--ui-accent);
+}
+
+/* --------------------------------------------------------------------------
+   5. Search dialog
+   -------------------------------------------------------------------------- */
+.search-dialog {
+  background: var(--ui-glass-bg-strong);
+  border: 1px solid var(--ui-glass-border);
+  box-shadow: var(--ui-shadow-hover);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+#search-mask {
+  background: rgba(4, 6, 10, .55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.local-search-input input,
+.search-nav {
+  background: transparent;
+}
+
+/* The decorative divider does not belong inside the search dialog */
+#local-search .search-dialog hr {
+  margin: 12px 0;
+  border: none;
+  border-top: 1px solid var(--ui-glass-border);
+}
+
+#local-search .search-dialog hr:before {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   6. File list (/files)
+   -------------------------------------------------------------------------- */
+#file-list h1 {
+  margin-bottom: 18px;
+}
+
+.file-list {
+  width: 100%;
+}
+
+.file-list-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  padding: 6px 16px;
+  color: var(--card-meta);
+  font-size: .82rem;
+  letter-spacing: .03em;
+}
+
+.file-list-header .col-name {
+  flex: 1;
+  padding-left: 32px;
+}
+
+.file-list-header .col-size {
+  flex: 0 0 96px;
+  text-align: right;
+}
+
+.file-list-header .col-mtime {
+  flex: 0 0 150px;
+  padding-left: 16px;
+  text-align: right;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 12px 16px;
+  background: var(--ui-row-bg);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: 10px;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.file-row:hover {
+  background: var(--ui-row-bg-hover);
+  border-color: var(--ui-accent-soft);
+  box-shadow: 0 8px 24px -14px rgba(0, 0, 0, .55);
+  transform: translateY(-1px);
+}
+
+.file-row .file-icon {
+  flex: 0 0 22px;
+  width: 22px;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.file-row .col-name {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+}
+
+.file-row .file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-row .file-name a {
+  color: var(--font-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.file-row:hover .file-name a {
+  color: var(--ui-accent);
+}
+
+.file-row .col-size {
+  flex: 0 0 96px;
+  text-align: right;
+}
+
+.file-row .col-mtime {
+  flex: 0 0 150px;
+  padding-left: 16px;
+  text-align: right;
+}
+
+.file-row .file-meta {
+  color: var(--card-meta);
+  font-size: .82rem;
+}
+
+@media (max-width: 768px) {
+  .file-row .col-mtime,
+  .file-list-header .col-mtime {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .file-row .col-size,
+  .file-list-header .col-size {
+    display: none;
+  }
+
+  .file-row {
+    padding: 11px 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Music player (floating widget, modal, /music page)
+   -------------------------------------------------------------------------- */
+#mm-floating {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 100000;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--ui-glass-bg-strong);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: 999px;
+  box-shadow: var(--ui-shadow);
+  color: var(--font-color);
+  font-size: .82rem;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+#mm-floating .mm-f-title {
+  max-width: 180px;
+  overflow: hidden;
+  color: var(--font-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#mm-floating button,
+#music-modal button,
+.music-page button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--ui-glass-border);
+  border-radius: 50%;
+  color: var(--font-color);
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+#mm-floating button:hover,
+#music-modal button:hover,
+.music-page button:hover {
+  background: var(--ui-accent-soft);
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+}
+
+#music-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(4, 6, 10, .55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+#music-modal {
+  overflow: auto;
+  width: min(640px, 100%);
+  max-height: 80vh;
+  padding: 20px;
+  background: var(--ui-glass-bg-strong);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow-hover);
+  color: var(--font-color);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+}
+
+#music-modal .mm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+#music-modal .mm-header .mm-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+#music-modal .mm-header .mm-title i {
+  margin-right: 6px;
+  color: var(--ui-accent);
+}
+
+#music-modal .mm-list,
+.music-page .music-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#music-modal .mm-item,
+.music-page .music-list .mm-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 8px 10px;
+  background: var(--ui-row-bg);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: 10px;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+#music-modal .mm-item:hover,
+.music-page .music-list .mm-item:hover {
+  background: var(--ui-row-bg-hover);
+}
+
+#music-modal .mm-item.playing,
+.music-page .music-list .mm-item.playing {
+  background: var(--ui-accent-soft);
+  border-color: var(--ui-accent);
+}
+
+#music-modal .mm-item .mm-meta,
+.music-page .music-list .mm-item .mm-meta {
+  flex: 1;
+  overflow: hidden;
+  color: var(--font-color);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#music-modal .mm-item .mm-meta .mm-name,
+.music-page .music-list .mm-item .mm-meta .mm-name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#music-modal .mm-item .mm-meta .mm-artist,
+.music-page .music-list .mm-item .mm-meta .mm-artist {
+  display: block;
+  margin-top: 2px;
+  color: var(--card-meta);
+  font-size: .78rem;
+}
+
+#music-modal .mm-item button,
+.music-page .music-list .mm-item button {
+  flex: 0 0 auto;
+}
+
+#music-modal .mm-player {
+  margin-top: 14px;
+}
+
+#music-modal .mm-player audio {
+  width: 100%;
+}
+
+#music-modal .mm-footer {
+  margin-top: 12px;
+  text-align: right;
+  font-size: .82rem;
+}
+
+#music-modal .mm-footer a {
+  color: var(--ui-accent);
+}
+
+/* /music page */
+.music-page {
+  max-width: 860px;
+}
+
+.music-page .music-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.music-page .music-page-header h1 {
+  margin: 0;
+}
+
+.music-page .music-page-header .music-page-sub {
+  margin: 4px 0 0;
+  color: var(--card-meta);
+  font-size: .85rem;
+}
+
+.music-page .music-page-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.music-page .music-list .mm-item .mm-index {
+  flex: 0 0 22px;
+  color: var(--card-meta);
+  font-size: .82rem;
+  text-align: center;
+}
+
+.music-page .mm-item.playing .mm-index {
+  color: var(--ui-accent);
+}
+
+@media (max-width: 520px) {
+  #mm-floating {
+    left: 10px;
+    bottom: 10px;
+    max-width: calc(100vw - 20px);
+  }
+
+  #mm-floating .mm-f-title {
+    max-width: 96px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Typography & details
+   -------------------------------------------------------------------------- */
+#article-container {
+  line-height: 1.95;
+}
+
+#article-container h2,
+#article-container h3 {
+  letter-spacing: .01em;
+}
+
+#article-container img {
+  border-radius: 8px;
+}
+
+::selection {
+  background: var(--ui-accent);
+  color: #fff;
+}
+
+#card-toc .toc-content .toc-link.active,
+#card-toc .toc-content .toc-link:hover {
+  color: var(--ui-accent);
+}
+
+#rightside > div > button:hover {
+  background: var(--ui-accent);
+}
+
+/* Smooth in-page anchor scrolling without disturbing the fixed nav */
+html {
+  scroll-padding-top: 76px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>人机日志</title>
+    <url>/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<p>世界已经改变，谁还在留恋?</p>
+]]></content>
+      <tags>
+        <tag>memory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>萌狐云服务器搭建博客命令整合</title>
+    <url>/2026/08/14/%E5%93%86%E8%90%8C%E7%8B%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h5 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm :"></a>安装 nvm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash</span><br></pre></td></tr></table></figure>
+<h5 id="安装-npm"><a href="#安装-npm" class="headerlink" title="安装 npm :"></a>安装 npm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
+<h5 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo :"></a>安装 hexo :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h5 id="创建个人博客"><a href="#创建个人博客" class="headerlink" title="创建个人博客:"></a>创建个人博客:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init [你想要的博客名]</span><br></pre></td></tr></table></figure>
+<h5 id="切换到博客根目录"><a href="#切换到博客根目录" class="headerlink" title="切换到博客根目录:"></a>切换到博客根目录:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> [你想要的博客名]</span><br></pre></td></tr></table></figure>
+<h5 id="安装所需包"><a href="#安装所需包" class="headerlink" title="安装所需包"></a>安装所需包</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h5 id="安装-buttferfly-主题"><a href="#安装-buttferfly-主题" class="headerlink" title="安装 buttferfly 主题:"></a>安装 buttferfly 主题:</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-theme-butterfly</span><br></pre></td></tr></table></figure>
+<h5 id="创建你的第一篇文章"><a href="#创建你的第一篇文章" class="headerlink" title="创建你的第一篇文章:"></a>创建你的第一篇文章:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [文章名]</span><br></pre></td></tr></table></figure>
+<p>此时文章会被放在 <code>source/_posts</code> 目录中，以后随便找个markdown编辑器写</p>
+<h5 id="生产静态文件"><a href="#生产静态文件" class="headerlink" title="生产静态文件"></a>生产静态文件</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>此时网页文件会在 <code>public/</code> 下生成</p>
+<h5 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h5 id="这里放一下-hexo-和-butterfly-的网页"><a href="#这里放一下-hexo-和-butterfly-的网页" class="headerlink" title="这里放一下 hexo 和 butterfly 的网页"></a>这里放一下 hexo 和 butterfly 的网页</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://hexo.io</span><br><span class="line">https://butterfly.js.org</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="视频为一个人在三天完成，不妥之处见谅"><a href="#视频为一个人在三天完成，不妥之处见谅" class="headerlink" title="视频为一个人在三天完成，不妥之处见谅"></a>视频为一个人在三天完成，不妥之处见谅</h2><h3 id="配音-达妮娅-GPT-SoVITs"><a href="#配音-达妮娅-GPT-SoVITs" class="headerlink" title="配音: 达妮娅 GPT-SoVITs"></a>配音: 达妮娅 GPT-SoVITs</h3><h3 id="所使用到的软件-Kdenlive-Blender"><a href="#所使用到的软件-Kdenlive-Blender" class="headerlink" title="所使用到的软件: Kdenlive, Blender"></a>所使用到的软件: Kdenlive, Blender</h3>]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>教程</tag>
+        <tag>博客</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Arch Linux 使用 Lutris + DWProton 运行鸣潮 | Linux 游戏折腾记录</title>
+    <url>/2026/08/13/Arch%20Linux%20%E4%BD%BF%E7%94%A8%20DWProton%20%E7%8E%A9%E9%B8%A3%E6%BD%AE%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">本人为 Arch Linux + N卡用户，玩了几个月，体验下来还不错</span><br></pre></td></tr></table></figure>
+<h1 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h1><h2 id="1-1-安装-Lutris"><a href="#1-1-安装-Lutris" class="headerlink" title="1.1 安装 Lutris"></a>1.1 安装 <a href="https://lutris.net/">Lutris</a></h2><p>这是我使用的游戏管理器，非常推荐</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># arch linux用户可通过pacman安装</span></span><br><span class="line"><span class="built_in">sudo</span> pacman -S lutris</span><br></pre></td></tr></table></figure>
+<p>其他发行版用户的话可前往 <a href="https://lutris.net/">官网</a>，提供了很多发行版的下载方法</p>
+<h2 id="1-2-安装-DWProton"><a href="#1-2-安装-DWProton" class="headerlink" title="1.2 安装 DWProton"></a>1.2 安装 <a href="https://dawn.wine/dawn-winery/dwproton">DWProton</a></h2><p>这是对”anime games”优化的 proton 版本，其他几个 proton 会被鸣潮的反作弊拦截导致无法进入游戏</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># arch linux用户直接 paru 就行了，archlinuxcn和AUR都收录了dwproton-bin</span></span><br><span class="line">paru -S dwproton-bin <span class="comment"># 或 yay -S dwproton-bin</span></span><br><span class="line"><span class="comment"># 此时dwproton会被安装到 /usr/share/steam/compatibilitytools.d/dwproton</span></span><br></pre></td></tr></table></figure>
+<p>其他发行版用户可前往 <a href="https://dawn.wine/dawn-winery/dwproton/releases">Releases</a> 下载tar.xz文件，然后解压到自己能找到的地方</p>
+<p>使用 <a href="https://github.com/Vysp3r/ProtonPlus">ProtonPlus</a> 进行管理当然也是可以的</p>
+<h1 id="2-安装鸣潮"><a href="#2-安装鸣潮" class="headerlink" title="2.安装鸣潮"></a>2.安装鸣潮</h1><div class="note [class] [no-icon] [style] flat"><p>如果是在 Windows 上安装过并且不想再在 Linux 上安装的话可以跳过，毕竟 Linux 是可以读取 Windows 的 ntfs 文件的</p>
+</div>
+<h2 id="方案一-ww-manager"><a href="#方案一-ww-manager" class="headerlink" title="方案一 ww-manager"></a>方案一 <a href="https://github.com/timetetng/wutheringwaves-cli-manager">ww-manager</a></h2><p>支持增量更新，服务器切换，预下载，文件校验等功能</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># arch linux依旧AUR</span></span><br><span class="line">paru -S ww-manager <span class="comment"># 或 yay -S ww-manager</span></span><br></pre></td></tr></table></figure>
+<p>其他发行版可以使用 <a href="https://docs.astral.sh/uv">uv</a> 安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uv tool install ww-manager</span><br></pre></td></tr></table></figure>
+<p>至于 uv 的安装方法见下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -LsSf https://astral.sh/uv/install.sh | sh <span class="comment"># Linux/MacOS</span></span><br></pre></td></tr></table></figure>
+<p>然后在命令行输入 ww 即可看到食用方法</p>
+<h2 id="方案二-wuwa-downloader"><a href="#方案二-wuwa-downloader" class="headerlink" title="方案二 wuwa-downloader"></a>方案二 <a href="https://github.com/yuhkix/wuwa-downloader">wuwa-downloader</a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Arch依旧</span></span><br><span class="line">paru -S wuwa-manager-git <span class="comment"># 或 yay -S wuwa-manager-git</span></span><br><span class="line"><span class="comment"># 然后终端输入 wuwa-downloader</span></span><br></pre></td></tr></table></figure>
+<p>其他发行版</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rustup toolchain install nightly</span><br><span class="line">rustup default nightly</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/yuhkix/wuwa-downloader.git</span><br><span class="line"><span class="built_in">cd</span> wuwa-downloader</span><br><span class="line"></span><br><span class="line">cargo build --release</span><br></pre></td></tr></table></figure>
+<p>然后终端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./target/release/wuwa-downloader</span><br></pre></td></tr></table></figure>
+<p>即可食用</p>
+<h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><p>工具准备好了，该开始使用了</p>
+<h2 id="1-1-修改文件防掉线"><a href="#1-1-修改文件防掉线" class="headerlink" title="1.1 修改文件防掉线"></a>1.1 修改文件防掉线</h2><h3 id="国际服"><a href="#国际服" class="headerlink" title="国际服"></a>国际服</h3><p>修改<code>Wuthering Waves/Client/Binaries/Win64/ThirdParty/KrPcSdk_Global/KRSDKRes/KRSDK.bin</code>中的KR_ChannelId为209</p>
+<h3 id="国服"><a href="#国服" class="headerlink" title="国服"></a>国服</h3><p>修改<code>Wuthering Waves/Client/Binaries/Win64/ThirdParty/KrPcSdk_Mainland/KRSDKRes/KRSDKConfig.json</code>中的KR_ChannelId为209</p>
+<div class="note [info] [no-icon] [modern] flat"><p>这个基本每次更新后都要修改，因为会被覆盖</p>
+</div>
+
+<h2 id="1-2-配置-Lutris-DWProton"><a href="#1-2-配置-Lutris-DWProton" class="headerlink" title="1.2 配置 Lutris + DWProton"></a>1.2 配置 Lutris + DWProton</h2><p>启动 Lutris，点击 左上角三点 → Preferences → Runners → 下滑找到Wine → 齿轮图形的设置<br>开启 Advanced<br>然后 Wine version，此时如果出现了dwproton，直接选择即可<br>若没有 则下面的 Custom Wine executable，找到刚刚解压出的 dwproton，AUR 安装的请选择 &#x2F;usr&#x2F;share&#x2F;steam&#x2F;compatibilitytools.d&#x2F;dwproton&#x2F;proton</p>
+<h2 id="1-3-鸣潮，启动！"><a href="#1-3-鸣潮，启动！" class="headerlink" title="1.3 鸣潮，启动！"></a>1.3 鸣潮，启动！</h2><p>回到 Lutris 首页 → 左上角「+」 → Install a Windows game from an executable → 怎么填都行 → Install → Install → Continue → 选择鸣潮的 Wuthering Waves.exe → Install</p>
+<p>此时鸣潮应该就运行起来了</p>
+<div class="note [info] [no-icon] [modern] flat"><p>进入鸣潮后注意先选择退出游戏，<strong>而非</strong>直接删掉窗口，否则会让 Lutris 以为安装失败了</p>
+</div>
+
+<p>退出后就安装完成了</p>
+<p>Lutris 中应该会出现一个鸣潮的启动方式 （若没有则点左边栏的 Windows）</p>
+<p>鼠标放到上面，右键 → Configure →</p>
+<ul>
+<li>Game options → Executable → 选择 Wuthering Waves.exe &amp;&amp; Arguments 填入 -SkipSplash # 跳过库洛Logo用的</li>
+<li>Runner options 确定所使用的 Wine 为 <code>dwproton</code></li>
+<li>System options → Game execution → 添加 Environment variables：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DXVK_ASYNC</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>DXVK_CONFIG</code></td>
+<td><code>dxgi.maxFrameLatency=1</code></td>
+</tr>
+<tr>
+<td><code>DXVK_STATE_CACHE</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>FCITX5_ENABLE_WAYLAND</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>GTK_IM_MODULE</code></td>
+<td><code>fcitx</code></td>
+</tr>
+<tr>
+<td><code>MESA_SHADER_CACHE_DISABLE</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>PROTON_ENABLE_NVAPI</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>QT_AUTO_SCREEN_SCALE_FACTOR</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>QT_IM_MODULE</code></td>
+<td><code>fcitx</code></td>
+</tr>
+<tr>
+<td><code>WINEDLLOVERRIDES</code></td>
+<td><code>mscoree,mshtml=,winemenubuilder.exe=d</code></td>
+</tr>
+<tr>
+<td><code>WINEESYNC</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>WINEFSYNC</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>XMODIFIERS</code></td>
+<td><code>@im=fcitx</code></td>
+</tr>
+<tr>
+<td><code>__GL_SHADER_DISK_CACHE</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>__GL_SHADER_DISK_CACHE_SIZE</code></td>
+<td><code>10737415240</code></td>
+</tr>
+</tbody>
+</table>
+上面是我的配置，可能会有多余的，如果不用fcitx5或者没配置也能正常玩可以不配置
+
+<p>然后就可以愉快的玩鸣潮了</p>
+<div class="note [class] [no-icon] [style] flat"><p>如果想要性能检测的话可以装个 <a href="https://github.com/flightlessmango/MangoHud">mangohud</a></p>
+</div>
+
+<h1 id="链接汇总"><a href="#链接汇总" class="headerlink" title="链接汇总"></a>链接汇总</h1><ul>
+<li><a href="https://www.protondb.com/app/3513350">ProtonDB</a> - 前人的脚步</li>
+<li><a href="https://lutris.net/">Lutris</a> - 游戏管理器</li>
+<li><a href="https://dawn.wine/dawn-winery/dwproton">DWProton</a> - 鸣潮优化的 Proton 版本</li>
+<li><a href="https://dawn.wine/dawn-winery/dwproton/releases">DWProton Releases</a> - DWProton 下载页面</li>
+<li><a href="https://github.com/Vysp3r/ProtonPlus">ProtonPlus</a> - Proton 管理工具</li>
+<li><a href="https://github.com/timetetng/wutheringwaves-cli-manager">ww-manager</a> - 命令行鸣潮安装&#x2F;更新工具</li>
+<li><a href="https://docs.astral.sh/uv">uv</a> - Python 包管理器</li>
+<li><a href="https://github.com/yuhkix/wuwa-downloader">wuwa-downloader</a> - 鸣潮下载器</li>
+<li><a href="https://github.com/flightlessmango/MangoHud">MangoHud</a> - 性能监控工具</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Game</tag>
+        <tag>Wine</tag>
+        <tag>proton</tag>
+        <tag>鸣潮</tag>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Arch Linux 软件推荐</title>
+    <url>/2026/02/19/Arch%20Linux%20%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/</url>
+    <content><![CDATA[<h1 id="Arch-Linux-软件推荐"><a href="#Arch-Linux-软件推荐" class="headerlink" title="Arch Linux 软件推荐"></a>Arch Linux 软件推荐</h1><p>以下是为 Arch Linux 用户精选的一系列实用软件，涵盖了日常使用、开发、多媒体创作、系统工具等多个方面。所有软件均可通过官方仓库或 AUR 轻松安装。</p>
+<hr>
+<h2 id="🖥️-窗口管理器与桌面环境"><a href="#🖥️-窗口管理器与桌面环境" class="headerlink" title="🖥️ 窗口管理器与桌面环境"></a>🖥️ 窗口管理器与桌面环境</h2><h3 id="Hyprland"><a href="#Hyprland" class="headerlink" title="Hyprland"></a>Hyprland</h3><p>一款基于 Wayland 的动态平铺窗口管理器，以出色的视觉效果和高度可定制性著称。它支持动画、圆角、模糊等现代特性，适合追求极致效率和美观的用户。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S hyprland</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🖥️-终端模拟器"><a href="#🖥️-终端模拟器" class="headerlink" title="🖥️ 终端模拟器"></a>🖥️ 终端模拟器</h2><h3 id="Alacritty"><a href="#Alacritty" class="headerlink" title="Alacritty"></a>Alacritty</h3><p>一款使用 OpenGL 渲染的终端模拟器，以速度和简洁为目标。它支持丰富的配置选项，且与 tmux、neovim 等工具配合流畅。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S alacritty</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📝-文本编辑器"><a href="#📝-文本编辑器" class="headerlink" title="📝 文本编辑器"></a>📝 文本编辑器</h2><h3 id="Neovide"><a href="#Neovide" class="headerlink" title="Neovide"></a>Neovide</h3><p>Neovim 的图形化前端，利用 Skia 渲染引擎实现了流畅的动画和现代化的界面。它保留了 Neovim 的全部功能，并添加了鼠标支持、字体连字等特性。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S neovide</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📂-文件管理"><a href="#📂-文件管理" class="headerlink" title="📂 文件管理"></a>📂 文件管理</h2><h3 id="Dolphin"><a href="#Dolphin" class="headerlink" title="Dolphin"></a>Dolphin</h3><p>KDE 项目开发的轻量级文件管理器，界面直观且功能强大，支持标签页、拆分视图、预览面板和版本控制集成。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S dolphin</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ark"><a href="#Ark" class="headerlink" title="Ark"></a>Ark</h3><p>KDE 的归档工具，支持常见压缩格式（zip、tar、7z 等），与 Dolphin 无缝集成，可方便地解压和创建压缩包。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S ark</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🌐-浏览器"><a href="#🌐-浏览器" class="headerlink" title="🌐 浏览器"></a>🌐 浏览器</h2><h3 id="Firefox-Developer-Edition"><a href="#Firefox-Developer-Edition" class="headerlink" title="Firefox Developer Edition"></a>Firefox Developer Edition</h3><p>Mozilla 为开发者打造的 Firefox 版本，内置最新的开发者工具，并支持 CSS 网格布局调试、JavaScript 调试器等高级功能。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从 AUR 安装</span></span><br><span class="line">yay -S firefox-developer-edition</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📚-办公与笔记"><a href="#📚-办公与笔记" class="headerlink" title="📚 办公与笔记"></a>📚 办公与笔记</h2><h3 id="Obsidian"><a href="#Obsidian" class="headerlink" title="Obsidian"></a>Obsidian</h3><p>一款强大的知识库和笔记应用，基于本地 Markdown 文件，支持双向链接、图谱视图和丰富的插件系统，适合构建个人知识网络。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从 AUR 安装</span></span><br><span class="line">yay -S obsidian</span><br></pre></td></tr></table></figure>
+
+<h3 id="GeoGebra"><a href="#GeoGebra" class="headerlink" title="GeoGebra"></a>GeoGebra</h3><p>动态数学软件，集几何、代数、表格、绘图、统计和微积分于一体，是数学教学和学习的利器。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S geogebra</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🎵-多媒体播放"><a href="#🎵-多媒体播放" class="headerlink" title="🎵 多媒体播放"></a>🎵 多媒体播放</h2><h3 id="VLC"><a href="#VLC" class="headerlink" title="VLC"></a>VLC</h3><p>全能的媒体播放器，支持几乎所有音频和视频格式，内置解码器，无需额外安装编解码器。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S vlc</span><br></pre></td></tr></table></figure>
+
+<h3 id="mpv"><a href="#mpv" class="headerlink" title="mpv"></a>mpv</h3><p>极简而强大的命令行视频播放器，基于 MPlayer 和 mplayer2，支持 GPU 加速和脚本扩展，适合追求轻量和高自定义的用户。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S mpv</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🎨-多媒体编辑与创作"><a href="#🎨-多媒体编辑与创作" class="headerlink" title="🎨 多媒体编辑与创作"></a>🎨 多媒体编辑与创作</h2><h3 id="Blender"><a href="#Blender" class="headerlink" title="Blender"></a>Blender</h3><p>开源的 3D 创作套件，支持建模、雕刻、纹理、渲染、动画、视频编辑和游戏制作等全流程，功能媲美商业软件。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S blender</span><br></pre></td></tr></table></figure>
+
+<h3 id="Shotcut"><a href="#Shotcut" class="headerlink" title="Shotcut"></a>Shotcut</h3><p>免费、开源的跨平台视频编辑器，支持多种格式和分辨率，拥有丰富的滤镜和转场效果，界面简洁易用。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S shotcut</span><br></pre></td></tr></table></figure>
+
+<h3 id="GIMP"><a href="#GIMP" class="headerlink" title="GIMP"></a>GIMP</h3><p>GNU 图像处理程序，功能类似于 Photoshop，支持图层、滤镜、画笔和多种图像格式，是平面设计和照片修图的强大工具。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S gimp</span><br></pre></td></tr></table></figure>
+
+<h3 id="Helio"><a href="#Helio" class="headerlink" title="Helio"></a>Helio</h3><p>模块化音乐工作站，专注于旋律创作和编辑，提供直观的钢琴卷帘和节奏编辑器，适合制作电子音乐和学习乐理。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从 AUR 安装（包名 helio-workstation）</span></span><br><span class="line">yay -S helio-workstation</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="⬇️-下载工具"><a href="#⬇️-下载工具" class="headerlink" title="⬇️ 下载工具"></a>⬇️ 下载工具</h2><h3 id="Motrix"><a href="#Motrix" class="headerlink" title="Motrix"></a>Motrix</h3><p>一款简洁美观的下载管理器，支持 HTTP、FTP、BitTorrent 和 Magnet 链接，基于 aria2，可同时管理多个任务。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S motrix</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="⌨️-输入法"><a href="#⌨️-输入法" class="headerlink" title="⌨️ 输入法"></a>⌨️ 输入法</h2><h3 id="Fcitx5"><a href="#Fcitx5" class="headerlink" title="Fcitx5"></a>Fcitx5</h3><p>新一代输入法框架，支持拼音、五笔、仓颉等多种输入法引擎，与 Wayland 兼容良好，配置灵活。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S fcitx5 fcitx5-chinese-addons fcitx5-gtk fcitx5-qt</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📊-系统监控"><a href="#📊-系统监控" class="headerlink" title="📊 系统监控"></a>📊 系统监控</h2><h3 id="Mission-Center"><a href="#Mission-Center" class="headerlink" title="Mission Center"></a>Mission Center</h3><p>一款现代化的系统监控工具，界面仿 Windows 任务管理器，可实时查看 CPU、内存、磁盘、网络和进程信息。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从 AUR 安装</span></span><br><span class="line">yay -S mission-center</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="📱-兼容层与虚拟化"><a href="#📱-兼容层与虚拟化" class="headerlink" title="📱 兼容层与虚拟化"></a>📱 兼容层与虚拟化</h2><h3 id="Waydroid"><a href="#Waydroid" class="headerlink" title="Waydroid"></a>Waydroid</h3><p>在 Wayland 会话中运行 Android 应用的容器方案，基于 LXC 和 Anbox 技术，可无缝集成 Android 应用到 Linux 桌面。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S waydroid</span><br></pre></td></tr></table></figure>
+
+<h3 id="Wine"><a href="#Wine" class="headerlink" title="Wine"></a>Wine</h3><p>Windows 应用兼容层，允许在 Linux 上运行 Windows 程序。WineHQ 是 Wine 的官方版本，提供最全面的兼容性支持。  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> pacman -S wine</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>以上软件均经过精心挑选，覆盖了 Arch Linux 用户可能涉及的多个领域。你可以根据自己的需求选择安装，享受 Arch 带来的自由与高效。</p>
+]]></content>
+      <tags>
+        <tag>Arch Linux</tag>
+        <tag>Linux</tag>
+        <tag>软件推荐</tag>
+        <tag>AI生成</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux连接JLU吉林大学有线网</title>
+    <url>/2026/09/12/Linux%E8%BF%9E%E6%8E%A5JLU%E5%90%89%E6%9E%97%E5%A4%A7%E5%AD%A6%E6%9C%89%E7%BA%BF%E7%BD%91/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>高考完也是来泥🐔了。军训期间折腾了一下校园网，发现 Linux 相关的资料并不多，而且泥🐔官网的 jlu drcom 根本用不了，搞了半天才吃上泥🐔校园有线网 100MB&#x2F;s 的速度。</p>
+<p>本人的电脑环境是 Arch Linux + NetworkManager。</p>
+<h1 id="网线购买"><a href="#网线购买" class="headerlink" title="网线购买"></a>网线购买</h1><p>泥🐔大学城二公寓的网口在门框上，非常高。我靠窗，买的 10m 绿联六类千兆网线（其实 8m 就够了，奈何京东 8m 比 10m 还贵，恼），不靠窗的室友买 5m 就够用。</p>
+<h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><h2 id="网络开户"><a href="#网络开户" class="headerlink" title="网络开户"></a><del>网络开户</del></h2><p><del>你都用 Linux 了，开户这些应该就不用写了（懒）</del></p>
+<h2 id="物理-MAC-设置"><a href="#物理-MAC-设置" class="headerlink" title="物理 MAC 设置"></a>物理 MAC 设置</h2><p>首先找物理网卡地址，打开终端：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip a</span><br></pre></td></tr></table></figure>
+
+<p>我用的是笔记本电脑，输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: enp4s0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether a1:b2:c3:d4:e5:f6 brd ff:ff:ff:ff:ff:ff <span class="comment"># 这一行开头的 &quot;a1:b2:c3:d4:e5:f6&quot; 就是需要的网卡物理 MAC 地址</span></span><br><span class="line">    altname enxa1b2c3d4e5f6</span><br><span class="line">3: wlp2s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether f6:e5:d4:c3:b2:a1 brd ff:ff:ff:ff:ff:ff permaddr a2:b3:c4:d5:e6:f7</span><br><span class="line">    altname wlxf6e5d4c3b2a1</span><br><span class="line">4...</span><br></pre></td></tr></table></figure>
+
+<p>要是判断不了哪块是以太网网卡，就连个 WiFi：状态为 UP 的是无线网卡，另一个状态为 DOWN 的就是物理网卡。（<del>还判断不出来就把输出丢给 AI</del>）</p>
+<p>查到网卡地址后就可以填上了，附<a href="https://ip.jlu.edu.cn/pay">泥🐔校园网自助服务平台链接</a>。</p>
+<h2 id="NetworkManager-设置"><a href="#NetworkManager-设置" class="headerlink" title="NetworkManager 设置"></a>NetworkManager 设置</h2><p>命令行至上（（</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nmcli connection add \ <span class="comment"># 用 nmcli 创建新的连接</span></span><br><span class="line">  <span class="built_in">type</span> <span class="string">&quot;ethernet&quot;</span> \ <span class="comment"># 设置添加类型为以太网</span></span><br><span class="line">  con-name <span class="string">&quot;jlu&quot;</span> \ <span class="comment"># 就设置个别名，什么都行</span></span><br><span class="line">  ifname <span class="string">&quot;enp4s0&quot;</span> \ <span class="comment"># 使用的物理网卡名，确保与前面填 MAC 地址的网卡是同一个</span></span><br><span class="line">  ipv4.method <span class="string">&quot;manual&quot;</span> \ <span class="comment"># IPv4 配置方式：手动配置</span></span><br><span class="line">  ipv4.addresses <span class="string">&quot;114.51.41.91/24&quot;</span> \ <span class="comment"># 你在泥🐔开户时分配到的 IPv4 地址，记得后面加 &quot;/24&quot;，表示子网掩码为 255.255.255.0</span></span><br><span class="line">  ipv4.gateway <span class="string">&quot;114.51.41.92&quot;</span> \ <span class="comment"># 网关地址</span></span><br><span class="line">  ipv4.dns <span class="string">&quot;11.45.1.4&quot;</span> <span class="comment"># DNS 地址，有多个就用空格隔开，eg: &quot;10.10.10.10 202.98.18.3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>复制上面的命令，再把参数换成自己的即可。然后：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nmcli connection up <span class="string">&quot;jlu&quot;</span> <span class="comment"># jlu 换成你上面设置的名字</span></span><br></pre></td></tr></table></figure>
+
+<p>连接上。</p>
+<p>图形界面当然也可以通过 <a href="https://gitlab.gnome.org/GNOME/network-manager-applet">nm-applet</a> 设置，但不如命令行快捷，所需参数也都一样，不再赘述。</p>
+<h2 id="Drcom-认证客户端"><a href="#Drcom-认证客户端" class="headerlink" title="Drcom 认证客户端"></a>Drcom 认证客户端</h2><p>此时因为没有认证，打开任何网页都会跳到 drcom 的下载页面，而泥🐔官网的 Linux 客户端年久失修，根本用不了。</p>
+<p>好在 GitHub 上有不少泥🐔学生写的客户端，这里使用其中之一：<a href="https://github.com/CrackTC/dr-jlu-linux">dr-jlu-linux</a>。</p>
+<p>配置方法蛮简单的，确保安装了 git 和 make：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/CrackTC/dr-jlu-linux.git <span class="comment"># 将仓库 clone 到本地，校园网有时连不上 GitHub，可以去 https://github.akams.cn 找找加速网站</span></span><br><span class="line"><span class="built_in">cd</span> dr-jlu-linux</span><br></pre></td></tr></table></figure>
+
+<p>然后把 <code>Login/main.cpp</code> 第五行的 <code>&lt;username&gt;</code> 换成你的校园邮箱 @ 前面的部分，<code>&lt;password&gt;</code> 换成校园邮箱密码；第六行的 <code>xxxxxxxxxxxx</code> 换成你的网卡 MAC 地址（去掉冒号），eg: <code>a1b2c3d4e5f6</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make build <span class="comment"># 编译</span></span><br><span class="line">make run <span class="comment"># 运行</span></span><br></pre></td></tr></table></figure>
+
+<p>此后每次运行 <code>make run</code> 即可（改了邮箱或密码，就编辑文件后执行 <code>make build &amp;&amp; make run</code>）。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>泥🐔校园有线网非常迅速，多线程能把我千兆网线跑满。我折腾了快 20min 才弄好，此教程旨在分享经历，让 Linux 用户少走弯路。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>JLU</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+</search>
