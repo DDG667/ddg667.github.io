@@ -301,4 +301,140 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1</title>
+    <url>/2026/10/08/Davinci-Resolve-Studio-Linux-%E5%AE%89%E8%A3%85%E5%B9%B6%E7%A0%B4%E8%A7%A3/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>后期悲</strong></p>
+<p>剧情高考议论文，念念不忘三段式。<br>拍摄调光均「一流」，竖屏放大再裁切。</p>
+</blockquote>
+<div class="note info modern"><p>本文环境：Arch Linux (x86_64)、NVIDIA 显卡、AUR helper (paru)。</p>
+</div>
+
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>学院办班级微电影大赛，负责后期。实觉 Kdenlive 之不足，转投 DaVinci Resolve Studio（下称 DRS）。</p>
+<p>愿 Kdenlive 越做越好；也希望哪天有money买Studio授权 (2000 CNY+）。</p>
+<h1 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h1><h2 id="1-1-AUR-包选择"><a href="#1-1-AUR-包选择" class="headerlink" title="1.1  AUR 包选择"></a>1.1  AUR 包选择</h2><table>
+<thead>
+<tr>
+<th>包名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>davinci-resolve-studio</code></td>
+<td>上游原始归档</td>
+</tr>
+<tr>
+<td><code>davinci-resolve-studio-aacfix</code></td>
+<td>构建期注入 AAC 解码支持，<strong>推荐</strong></td>
+</tr>
+<tr>
+<td><code>davinci-resolve</code></td>
+<td>免费版</td>
+</tr>
+</tbody></table>
+<p>BD（Blackmagic Design，DRS 背后的公司）给 Linux 版捆绑的 FFmpeg 库在编译时砍掉了 AAC 解码器，导入 AAC 音轨的素材会<strong>没声音</strong>。<code>-aacfix</code> 变体在构建期做两件事：</p>
+<ul>
+<li>用 <a href="https://github.com/GJDuck/e9patch">e9patch</a> 编译跳板（trampoline）并拼接进 <code>bin/resolve</code>；</li>
+<li>把捆绑的 4 个 FFmpeg 6.0.1 动态库替换成重编译的、启用 AAC 的 LGPL 构建。</li>
+</ul>
+<p>代价是它的 <code>makedepends</code> 里带着 <code>git</code>、<code>nasm</code>、<code>python-capstone</code>、<code>python-pyelftools</code>，<strong>构建会明显偏慢</strong>（要现编 FFmpeg，还要给 700 MB 的二进制打补丁），别以为卡死了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">paru -S davinci-resolve-studio-aacfix</span><br><span class="line"><span class="comment"># 或 yay -S davinci-resolve-studio-aacfix</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-正常の失败"><a href="#1-2-正常の失败" class="headerlink" title="1.2 正常の失败"></a>1.2 正常の失败</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">fetching devel info...</span><br><span class="line">==&gt; Making package: davinci-resolve-studio-aacfix 21.1.1-1 (Thu 08 Oct 2026 10:22:52 PM CST)</span><br><span class="line">==&gt; Retrieving sources...</span><br><span class="line">  -&gt; Downloading DaVinci_Resolve_Studio_21.1.1_Linux.zip...</span><br><span class="line">curl: (3) URL rejected: Bad file:// URL</span><br><span class="line">==&gt; ERROR: Failure <span class="keyword">while</span> downloading file://DaVinci_Resolve_Studio_21.1.1_Linux.zip</span><br><span class="line">    Aborting...</span><br><span class="line">error: failed to download sources <span class="keyword">for</span> <span class="string">&#x27;davinci-resolve-studio-aacfix-21.1.1-1&#x27;</span></span><br><span class="line">error: packages failed to build: davinci-resolve-studio-aacfix-21.1.1-1</span><br></pre></td></tr></table></figure>
+
+<p>看 PKGBUILD 的 <code>source</code> 就明白了：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span>=(<span class="string">&quot;file://DaVinci_Resolve_Studio_<span class="variable">$&#123;pkgver&#125;</span>_Linux.zip&quot;</span> ...)</span><br></pre></td></tr></table></figure>
+
+<p><code>file://</code> 意为”从本地取”， BD 的下载链接要求填表、带会话校验，<code>curl</code> 抓不到，所以这一步只能人来补。</p>
+<h2 id="1-3-手动下载安装包"><a href="#1-3-手动下载安装包" class="headerlink" title="1.3 手动下载安装包"></a>1.3 手动下载安装包</h2><ol>
+<li>打开 <a href="https://www.blackmagicdesign.com/products/davinciresolve/studio">DRS 下载页</a>，点下载按钮。</li>
+<li>选 <code>DaVinci Resolve Studio 21</code> 底下的 <code>Linux</code>。</li>
+<li>弹出个人信息表单 —— 此处 BD 不做任何校验，随意填。</li>
+<li>拿到 <code>DaVinci_Resolve_Studio_21.1.1_Linux.zip</code>（约 10 GB；装好后 <code>/opt/resolve</code> 会占约 19 GB）。</li>
+</ol>
+<h2 id="1-4-构建安装"><a href="#1-4-构建安装" class="headerlink" title="1.4 构建安装"></a>1.4 构建安装</h2><p><code>paru</code> 已经失败过了，PKGBUILD 就在缓存里，把 zip 丢进去接着构建：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.cache/paru/clone/davinci-resolve-studio-aacfix</span><br><span class="line"><span class="comment"># yay 用户对应 ~/.cache/yay/ 下的同名目录</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">mv</span> ~/Downloads/DaVinci_Resolve_Studio_21.1.1_Linux.zip ./</span><br><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
+
+<p>不留缓存，手动 clone 更干净：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://aur.archlinux.org/davinci-resolve-studio-aacfix.git</span><br><span class="line"><span class="built_in">cd</span> davinci-resolve-studio-aacfix</span><br><span class="line"><span class="built_in">mv</span> ~/Downloads/DaVinci_Resolve_Studio_21.1.1_Linux.zip ./</span><br><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
+
+<div class="note warning modern"><p>若报 <code>sha256sums</code> 校验失败，多半是 BD 换了包体。重新算一遍校验和再构建：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">updpkgsums &amp;&amp; makepkg -si</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="1-5-OpenCL：混合显卡机型注意"><a href="#1-5-OpenCL：混合显卡机型注意" class="headerlink" title="1.5 OpenCL：混合显卡机型注意"></a>1.5 OpenCL：混合显卡机型注意</h2><p><code>-aacfix</code> 的依赖里有个虚拟包 <code>opencl-driver</code>，它自己不提供实现，得看你用哪块卡：</p>
+<table>
+<thead>
+<tr>
+<th>显卡</th>
+<th>提供 <code>opencl-driver</code> 的包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NVIDIA</td>
+<td><code>opencl-nvidia</code></td>
+</tr>
+<tr>
+<td>AMD</td>
+<td><code>rocm-opencl-runtime</code></td>
+</tr>
+<tr>
+<td>Intel</td>
+<td><code>intel-compute-runtime</code></td>
+</tr>
+</tbody></table>
+<p>不装对应的那一个，DRS 启动时会直接不认 GPU。</p>
+<h1 id="二、破解"><a href="#二、破解" class="headerlink" title="二、破解"></a>二、破解</h1><h2 id="2-1-好习惯，先备份"><a href="#2-1-好习惯，先备份" class="headerlink" title="2.1 好习惯，先备份"></a>2.1 好习惯，先备份</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> -a /opt/resolve/bin/resolve /opt/resolve/bin/resolve.bak</span><br></pre></td></tr></table></figure>
+
+<p><code>perl -pi</code> 是<strong>就地重写</strong>：它按原 inode 打开并截断重写。712 MB 的文件在中途断电或 Ctrl-C，你手上就是一个废文件。备份不是可选项。</p>
+<h2 id="2-2-三条二进制补丁"><a href="#2-2-三条二进制补丁" class="headerlink" title="2.2 三条二进制补丁"></a>2.2 三条二进制补丁</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 补丁 1：把条件跳转改成无条件跳转，短路掉校验失败分支</span></span><br><span class="line"><span class="built_in">sudo</span> perl -pi -e <span class="string">&#x27;s/\x03\x00\x89\x45\xFC\x83\x7D\xFC\x00\x74\x11\x48\x8B\x45\xC8\x8B/\x03\x00\x89\x45\xFC\x83\x7D\xFC\x00\xEB\x11\x48\x8B\x45\xC8\x8B/g&#x27;</span> /opt/resolve/bin/resolve</span><br><span class="line"></span><br><span class="line"><span class="comment"># 补丁 2：同一处的更长上下文匹配（补丁 1 生效后它不会再命中，留着当保险）</span></span><br><span class="line"><span class="built_in">sudo</span> perl -pi -e <span class="string">&#x27;s/\x74\x11\x48\x8B\x45\xC8\x8B\x55\xFC\x89\x50\x58\xB8\x00\x00\x00/\xEB\x11\x48\x8B\x45\xC8\x8B\x55\xFC\x89\x50\x58\xB8\x00\x00\x00/g&#x27;</span> /opt/resolve/bin/resolve</span><br><span class="line"></span><br><span class="line"><span class="comment"># 补丁 3：反转一个告警分支的条件</span></span><br><span class="line"><span class="built_in">sudo</span> perl -0777 -pi -e <span class="string">&#x27;s/(\x40\x84\xED)\x74(.\xBF\x16\x00\x00\x00\xBE.\x01\x00\x00\xE8)/$1\x75$2/g&#x27;</span> /opt/resolve/bin/resolve</span><br></pre></td></tr></table></figure>
+
+<p>对应的反汇编（21.1.1，实际取自本机二进制）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">; 补丁 1 / 2 —— 0x74 是 je，0xEB 是 jmp</span><br><span class="line">83 7d fc 00     cmp  dword [rbp-0x4], 0</span><br><span class="line">74 11           je   +0x11              ; 原：条件成立 → 跳过下面这段</span><br><span class="line">eb 11           jmp  +0x11              ; 改后：无条件跳过</span><br><span class="line">48 8b 45 c8     mov  rax, [rbp-0x38]</span><br><span class="line">8b 55 fc        mov  edx, [rbp-0x4]</span><br><span class="line">89 50 58        mov  [rax+0x58], edx</span><br><span class="line">b8 00 00 00 00  mov  eax, 0</span><br><span class="line"></span><br><span class="line">; 补丁 3 —— 0x74 是 je，0x75 是 jne，条件方向反转</span><br><span class="line">40 84 ed        test bpl, bpl</span><br><span class="line">74 19           je   +0x19              ; 原</span><br><span class="line">75 19           jne  +0x19              ; 改后</span><br><span class="line">bf 16 00 00 00  mov  edi, 0x16</span><br><span class="line">be 3f 01 00 00  mov  esi, 0x13f</span><br><span class="line">e8 37 dc ff ff  call ...</span><br><span class="line">b8 ff ff ff ff  mov  eax, -1           ; 报错并返回 -1</span><br><span class="line">e9 2c 01 00 00  jmp  ...</span><br></pre></td></tr></table></figure>
+
+<p>三条补丁都是<strong>幂等</strong>的：改完的字节不再匹配原模式，重复执行什么也不会发生。所以”我不确定打没打过”的时候，直接再跑一遍即可。</p>
+<div class="note warning modern"><p>补丁 3 用了 <code>-0777</code>，Perl 会把整个 712 MB 二进制 slurp 进内存再回写。机器内存吃紧的话先关掉别的程序。</p>
+</div>
+
+<h2 id="2-3-放-license-文件"><a href="#2-3-放-license-文件" class="headerlink" title="2.3 放 license 文件"></a>2.3 放 license 文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /opt/resolve/.license</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&#x27;%s\n&#x27;</span> \</span><br><span class="line">  <span class="string">&#x27;LICENSE blackmagic davinciresolvestudio 999999 permanent uncounted&#x27;</span> \</span><br><span class="line">  <span class="string">&#x27; hostid=ANY issuer=CGP customer=CGP issued=28-dec-2023&#x27;</span> \</span><br><span class="line">  <span class="string">&#x27; akey=0000-0000-0000-0000 _ck=00 sig=&quot;00&quot;&#x27;</span> \</span><br><span class="line">| <span class="built_in">sudo</span> <span class="built_in">tee</span> /opt/resolve/.license/blackmagic.lic &gt; /dev/null</span><br></pre></td></tr></table></figure>
+
+<p>这是 FlexNet（FLEXlm）风格的授权文本，<code>permanent uncounted</code> 即永久、不限次数。</p>
+<p>第 2、3 行<strong>行首那个空格是格式的一部分</strong>，顺手删掉就废了。整个文件应当是 164 字节：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">wc</span> -c /opt/resolve/.license/blackmagic.lic   <span class="comment"># 164</span></span><br><span class="line"><span class="built_in">stat</span> -c <span class="string">&#x27;%a %U:%G&#x27;</span> /opt/resolve/.license/blackmagic.lic   <span class="comment"># 644 root:root</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-激活"><a href="#2-4-激活" class="headerlink" title="2.4 激活"></a>2.4 激活</h2><p>命令行没报错、没输出异常，就算打完了。启动 DRS，若仍弹出激活对话框，<strong>连续按 <code>0</code> 回车</strong>即可通过 —— 此时输入什么都会被接受，校验分支已经被短路了。</p>
+<h1 id="三、Wayland-与缩放修复"><a href="#三、Wayland-与缩放修复" class="headerlink" title="三、Wayland 与缩放修复"></a>三、Wayland 与缩放修复</h1><p>DRS 走 Qt5，在 Wayland 会话下常见启动失败或界面缩放诡异。强制它跑 X11 后端：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/share/applications/DaVinciResolve.desktop ~/.local/share/applications/</span><br><span class="line">sed -i <span class="string">&#x27;s|^Exec=.*|Exec=env QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 /opt/resolve/bin/resolve %u|&#x27;</span> \</span><br><span class="line">  ~/.local/share/applications/DaVinciResolve.desktop</span><br><span class="line">update-desktop-database ~/.local/share/applications 2&gt;/dev/null || <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><code>~/.local/share/applications/</code> 里的同名 desktop 文件优先级高于 <code>/usr/share/applications/</code>，所以不用动系统文件，升级也不会被覆盖。</p>
+<p><strong>混合显卡机型</strong>想让 DRS 固定跑独显（下面以 NVIDIA PRIME 为例），把 Exec 再补两个环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Exec=<span class="built_in">env</span> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 /opt/resolve/bin/resolve %u</span><br></pre></td></tr></table></figure>
+
+<p>前提是你确认它默认确实跑在了核显上，否则别乱加。</p>
+<h1 id="四、Q-A"><a href="#四、Q-A" class="headerlink" title="四、Q&amp;A"></a>四、Q&amp;A</h1><h2 id="Q1：交付页面无法-N-卡加速导出"><a href="#Q1：交付页面无法-N-卡加速导出" class="headerlink" title="Q1：交付页面无法 N 卡加速导出"></a>Q1：交付页面无法 N 卡加速导出</h2><p>装 <a href="https://github.com/EdvinNilsson/ffmpeg_encoder_plugin">davinci-ffmpeg-encoder-plugin</a>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">paru -S davinci-ffmpeg-encoder-plugin</span><br></pre></td></tr></table></figure>
+
+<p>它是 DRS 的 IOPlugin，安装到 <code>/opt/resolve/IOPlugins/ffmpeg_encoder_plugin.dvcp.bundle/Contents/Linux-x86-64/</code>。<strong>重启 Resolve</strong> 后在交付页把编解码器设为 H.264 &#x2F; H.265 &#x2F; AV1，类型里就会出现带 ffmpeg 的 NVENC 选项。</p>
+<h2 id="Q2：升级或重装后失效"><a href="#Q2：升级或重装后失效" class="headerlink" title="Q2：升级或重装后失效"></a>Q2：升级或重装后失效</h2><p><code>pacman</code> 升级会覆盖 <code>/opt/resolve/bin/resolve</code>，三条补丁需重打一遍。<code>/opt/resolve/.license/blackmagic.lic</code> 一般会被保留（包里的 <code>.license</code> 是个空目录）。</p>
+<h2 id="Q3：想彻底还原"><a href="#Q3：想彻底还原" class="headerlink" title="Q3：想彻底还原"></a>Q3：想彻底还原</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只还二进制</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> -a /opt/resolve/bin/resolve.bak /opt/resolve/bin/resolve</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者整包回炉（会重新构建，耗时）</span></span><br><span class="line">paru -S davinci-resolve-studio-aacfix</span><br></pre></td></tr></table></figure>
+
+<h1 id="五、题外话"><a href="#五、题外话" class="headerlink" title="五、题外话"></a>五、题外话</h1><p>Davinci Resolve Studio 是<strong>一次买断</strong>的专业视频软件，比 Adobe 的订阅制划算得多。经济条件允许的话，还是建议支持正版。</p>
+<h1 id="链接汇总"><a href="#链接汇总" class="headerlink" title="链接汇总"></a>链接汇总</h1><ul>
+<li><a href="https://www.blackmagicdesign.com/products/davinciresolve/studio">DaVinci Resolve Studio 下载页</a> - 官方安装包</li>
+<li><a href="https://aur.archlinux.org/packages/davinci-resolve-studio-aacfix">davinci-resolve-studio-aacfix</a> - 带 AAC 支持的 AUR 包</li>
+<li><a href="https://github.com/josephg/resolve-aacfix">resolve-aacfix</a> - AAC 补丁上游项目</li>
+<li><a href="https://github.com/GJDuck/e9patch">e9patch</a> - 二进制跳板注入工具</li>
+<li><a href="https://aur.archlinux.org/packages/davinci-ffmpeg-encoder-plugin">davinci-ffmpeg-encoder-plugin</a> - FFmpeg 编码器插件 AUR 包</li>
+<li><a href="https://github.com/EdvinNilsson/ffmpeg_encoder_plugin">ffmpeg_encoder_plugin</a> - 插件上游项目</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Arch Linux</tag>
+        <tag>AUR</tag>
+        <tag>Davinci</tag>
+        <tag>剪辑</tag>
+        <tag>破解</tag>
+      </tags>
+  </entry>
 </search>

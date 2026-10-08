@@ -1,0 +1,948 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1 | CPlus's Blog</title><meta name="author" content="CPlus"><meta name="copyright" content="CPlus"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="后期悲 剧情高考议论文，念念不忘三段式。拍摄调光均「一流」，竖屏放大再裁切。  本文环境：Arch Linux (x86_64)、NVIDIA 显卡、AUR helper (paru)。   起因学院办班级微电影大赛，负责后期。实觉 Kdenlive 之不足，转投 DaVinci Resolve Studio（下称 DRS）。 愿 Kdenlive 越做越好；也希望哪天有money买Studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1">
+<meta property="og:url" content="https://namddg667.top/2026/10/08/Davinci-Resolve-Studio-Linux-%E5%AE%89%E8%A3%85%E5%B9%B6%E7%A0%B4%E8%A7%A3/index.html">
+<meta property="og:site_name" content="CPlus&#39;s Blog">
+<meta property="og:description" content="后期悲 剧情高考议论文，念念不忘三段式。拍摄调光均「一流」，竖屏放大再裁切。  本文环境：Arch Linux (x86_64)、NVIDIA 显卡、AUR helper (paru)。   起因学院办班级微电影大赛，负责后期。实觉 Kdenlive 之不足，转投 DaVinci Resolve Studio（下称 DRS）。 愿 Kdenlive 越做越好；也希望哪天有money买Studio">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://namddg667.top/res/images/avatar.webp">
+<meta property="article:published_time" content="2026-10-08T14:13:21.000Z">
+<meta property="article:modified_time" content="2026-10-08T15:23:50.125Z">
+<meta property="article:author" content="CPlus">
+<meta property="article:tag" content="AUR">
+<meta property="article:tag" content="Arch Linux">
+<meta property="article:tag" content="Davinci">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="剪辑">
+<meta property="article:tag" content="破解">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://namddg667.top/res/images/avatar.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1",
+  "url": "https://namddg667.top/2026/10/08/Davinci-Resolve-Studio-Linux-%E5%AE%89%E8%A3%85%E5%B9%B6%E7%A0%B4%E8%A7%A3/",
+  "image": "https://namddg667.top/res/images/avatar.webp",
+  "datePublished": "2026-10-08T14:13:21.000Z",
+  "dateModified": "2026-10-08T15:23:50.125Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "CPlus",
+      "url": "https://namddg667.top"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://namddg667.top/2026/10/08/Davinci-Resolve-Studio-Linux-%E5%AE%89%E8%A3%85%E5%B9%B6%E7%A0%B4%E8%A7%A3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":true,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://fastly.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="preload" as="font" type="font/woff2" href="/fonts/ZhuZiAWan.subset.woff2" crossorigin><link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png"><link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png"><link rel="stylesheet" href="/css/custom.css?v=1"><!-- hexo injector head_end start --><style>/* 定义颜色变量 */
+:root {
+  --info-color: #00b8d41a;
+  --success-color: #00c8531a;
+  --warning-color: #ff91001a;
+  --failure-color: #ff52521a;
+  --quote-color: #9e9e9e1a;
+
+  /* 提取纯色(示例：#00b8d41a 的纯色是 #00b8d4，其余同理) */
+  --info-color-solid: #00b8d4;
+  --success-color-solid: #00c853;
+  --warning-color-solid: #ff9100;
+  --failure-color-solid: #ff5252;
+  --quote-color-solid: #9e9e9e;
+}
+
+/* 基础容器样式(通用部分) */
+.admonition-block {
+  padding: 0 .5em;
+  margin: 0 0 1.5em 0;
+  overflow: hidden;
+  page-break-inside: avoid;
+  border-left: .3rem solid;
+  border-radius: .3rem;
+  box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, .05), 0 0 0.05rem rgba(0, 0, 0, .1);
+}
+
+.admonition-block>.admonition-title {
+  position: relative;
+  margin: 0 -.5em;
+  padding: .4rem .1rem;
+  font-weight: 700;
+}
+
+.admonition-block>p,
+.hcb-content>p {
+  margin-left: 5px;
+}
+
+.admonition-block .admonition-title,
+.hcb-content.block[open] summary,
+.hcb-content.hcb-cards-labels {
+  margin-bottom: .5em !important;
+}
+
+details.hcb-content.block[class*="hcb"],
+div.hcb-content.hcb-cards {
+  border: .05rem solid;
+  border-radius: .2rem;
+  margin: 1.5em 0;
+  transition: box-shadow 250ms;
+}
+
+/* 基础容器额外样式 */
+details.hcb-content.block[class*="hcb"] {
+  border-color: #448aff;
+  padding: 0 .6rem;
+}
+
+/* 类型专属边框色(合并选择器) */
+.admonition-block.admonition-info,
+details.hcb-content.block.hcbinfo,
+div.hcb-content.hcb-cards.hcbinfo {
+  border-color: var(--info-color-solid);
+}
+
+.admonition-block.admonition-success,
+details.hcb-content.block.hcbsuccess,
+div.hcb-content.hcb-cards.hcbsuccess {
+  border-color: var(--success-color-solid);
+}
+
+.admonition-block.admonition-warning,
+details.hcb-content.block.hcbwarning,
+div.hcb-content.hcb-cards.hcbwarning {
+  border-color: var(--warning-color-solid);
+}
+
+.admonition-block.admonition-failure,
+details.hcb-content.block.hcbfailure,
+div.hcb-content.hcb-cards.hcbfailure {
+  border-color: var(--failure-color-solid);
+}
+
+.admonition-block.admonition-quote,
+details.hcb-content.block.hcbquote,
+div.hcb-content.hcb-cards.hcbquote {
+  border-color: var(--quote-color-solid);
+}
+
+/* 聚焦状态阴影(合并选择器) */
+details.hcb-content.block.hcbinfo:focus-within {
+  box-shadow: 0 0 0 .2rem var(--info-color);
+}
+
+details.hcb-content.block.hcbsuccess:focus-within {
+  box-shadow: 0 0 0 .2rem var(--success-color);
+}
+
+details.hcb-content.block.hcbwarning:focus-within {
+  box-shadow: 0 0 0 .2rem var(--warning-color);
+}
+
+details.hcb-content.block.hcbfailure:focus-within {
+  box-shadow: 0 0 0 .2rem var(--failure-color);
+}
+
+details.hcb-content.block.hcbquote:focus-within {
+  box-shadow: 0 0 0 .2rem var(--quote-color);
+}
+
+/* 内部元素盒模型(合并选择器) */
+details.hcb-content.block[class*="hcb"] *,
+div.hcb-content.hcb-cards * {
+  box-sizing: border-box;
+}
+
+/* 标题/摘要样式 */
+details.hcb-content.block[class*="hcb"] summary {
+  display: block;
+  min-height: 1rem;
+  margin: 0 -.6rem 0;
+  padding: .4rem;
+  border: none;
+  border-radius: .1rem .1rem 0 0;
+  font-weight: 700;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+}
+
+/* 标题/摘要背景色(合并选择器) */
+.admonition-block.admonition-info>.admonition-title,
+details.hcb-content.block.hcbinfo summary,
+div.hcb-content.hcb-cards-labels.hcbinfo {
+  background-color: var(--info-color);
+}
+
+.admonition-block.admonition-success>.admonition-title,
+details.hcb-content.block.hcbsuccess summary,
+div.hcb-content.hcb-cards-labels.hcbsuccess {
+  background-color: var(--success-color);
+}
+
+.admonition-block.admonition-warning>.admonition-title,
+details.hcb-content.block.hcbwarning summary,
+div.hcb-content.hcb-cards-labels.hcbwarning {
+  background-color: var(--warning-color);
+}
+
+.admonition-block.admonition-failure>.admonition-title,
+details.hcb-content.block.hcbfailure summary,
+div.hcb-content.hcb-cards-labels.hcbfailure {
+  background-color: var(--failure-color);
+}
+
+.admonition-block.admonition-quote>.admonition-title,
+details.hcb-content.block.hcbquote summary,
+div.hcb-content.hcb-cards-labels.hcbquote {
+  background-color: var(--quote-color);
+}
+
+/* 标题/摘要图标样式 */
+.admonition-block>.admonition-title i,
+details.hcb-content.block summary i,
+details.hcb-content.block[class*="hcb"] summary div.hcb-block-open-button i {
+  margin: 0 .6rem;
+}
+
+/* 展开按钮容器 */
+details.hcb-content.block[class*="hcb"] summary div.hcb-block-open-button {
+  float: right;
+}
+
+/* 展开按钮图标样式 */
+details.hcb-content.block[class*="hcb"] summary div.hcb-block-open-button i {
+  font-size: .7rem;
+  transition: transform 250ms;
+}
+
+/* 展开/折叠状态图标旋转 */
+details.hcb-content.block[class*="hcb"]:not([open]) summary div.hcb-block-open-button i {
+  transform: rotate(270deg);
+}
+
+details.hcb-content.block[class*="hcb"][open] summary div.hcb-block-open-button i {
+  transform: rotate(180deg);
+}
+
+/* 卡片切换radio(隐藏) */
+input.hcb-content.hcb-cards-input {
+  display: none;
+}
+
+/* 卡片标签容器 */
+div.hcb-content.hcb-cards-labels {
+  display: flex;
+  position: relative;
+}
+
+/* 卡片激活指示器 */
+div.hcb-content.hcb-cards-labels:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--cards-color);
+  width: var(--md-indicator-width);
+  transform: translateX(var(--md-indicator-x));
+  transition: width 225ms, transform 250ms cubic-bezier(.4, 0, .2, 1);
+}
+
+/* 卡片标签样式 */
+label.hcb-content.hcb-cards-label {
+  display: block;
+  padding: .45rem 1rem;
+  border-bottom: .1rem solid transparent;
+  border-radius: .1rem .1rem 0 0;
+  color: #0000008a;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 250ms;
+}
+
+/* 卡片标签激活/hover状态 */
+label.hcb-content.hcb-cards-label.active,
+label.hcb-content.hcb-cards-label:hover {
+  color: var(--cards-color);
+}
+
+/* 卡片内容容器 */
+div.hcb-content.hcb-cards-content {
+  display: none;
+  padding: 0 .6rem;
+}
+
+div.hcb-content.hcb-cards-content.active {
+  display: block;
+}</style><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="CPlus's Blog" type="application/atom+xml">
+</head><body><div class="bg-animation" id="web_bg"></div><style>#page-header.full_page{background-image:var(--random-web-bg, url('/res/images/backgrounds/background_1.webp')) !important;}
+#page-header.random-top-img{background-image:var(--random-web-bg, url('/res/images/backgrounds/background_2.webp')) !important;}</style><script>(() => {
+  const arr = ["background-image: url(/res/images/backgrounds/background_1.webp);","background-image: url(/res/images/backgrounds/background_2.webp);","background-image: url(/res/images/backgrounds/background_3.jpg);"]
+  const webBgDiv = document.getElementById('web_bg')
+  const root = document.documentElement
+
+  const setRandomBg = () => {
+    const style = arr[Math.floor(Math.random() * arr.length)]
+    const url = style.match(/url\(['"]?(.*?)['"]?\)/)
+    const color = style.match(/background-color:\s*([^;]+)/)
+    if (url) {
+      root.style.setProperty('--random-web-bg', `url('${url[1]}')`)
+    } else if (color) {
+      root.style.setProperty('--random-web-bg', `linear-gradient(${color[1].trim()}, ${color[1].trim()})`)
+    }
+
+    webBgDiv.style = style
+    requestAnimationFrame(() => webBgDiv.classList.add('bg-animation'))
+  }
+
+  document.addEventListener('pjax:send', () => {
+    webBgDiv.style = ''
+    webBgDiv.classList.remove('bg-animation')
+  })
+
+  document.addEventListener('pjax:complete', setRandomBg)
+
+  // 立即执行，让首页 Hero 与随机背景使用同一张图，避免闪烁
+  setRandomBg()
+})()
+</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/res/images/avatar.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/files"><i class="fa-fw fas fa-folder"></i><span> Files</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed random-top-img" id="page-header" style="background-image: url(/res/images/backgrounds/background_2.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">CPlus's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/music"><i class="fa-fw fas fa-music"></i><span> Music</span></a></div><div class="menus_item"><a class="site-page" href="/files"><i class="fa-fw fas fa-folder"></i><span> Files</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-10-08T14:13:21.000Z" title="发表于 2026-10-08 22:13:21">2026-10-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-08T15:23:50.125Z" title="更新于 2026-10-08 23:23:50">2026-10-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><blockquote>
+<p><strong>后期悲</strong></p>
+<p>剧情高考议论文，念念不忘三段式。<br>拍摄调光均「一流」，竖屏放大再裁切。</p>
+</blockquote>
+<div class="note info modern"><p>本文环境：Arch Linux (x86_64)、NVIDIA 显卡、AUR helper (paru)。</p>
+</div>
+
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>学院办班级微电影大赛，负责后期。实觉 Kdenlive 之不足，转投 DaVinci Resolve Studio（下称 DRS）。</p>
+<p>愿 Kdenlive 越做越好；也希望哪天有money买Studio授权 (2000 CNY+）。</p>
+<h1 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h1><h2 id="1-1-AUR-包选择"><a href="#1-1-AUR-包选择" class="headerlink" title="1.1  AUR 包选择"></a>1.1  AUR 包选择</h2><table>
+<thead>
+<tr>
+<th>包名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>davinci-resolve-studio</code></td>
+<td>上游原始归档</td>
+</tr>
+<tr>
+<td><code>davinci-resolve-studio-aacfix</code></td>
+<td>构建期注入 AAC 解码支持，<strong>推荐</strong></td>
+</tr>
+<tr>
+<td><code>davinci-resolve</code></td>
+<td>免费版</td>
+</tr>
+</tbody></table>
+<p>BD（Blackmagic Design，DRS 背后的公司）给 Linux 版捆绑的 FFmpeg 库在编译时砍掉了 AAC 解码器，导入 AAC 音轨的素材会<strong>没声音</strong>。<code>-aacfix</code> 变体在构建期做两件事：</p>
+<ul>
+<li>用 <a target="_blank" rel="noopener" href="https://github.com/GJDuck/e9patch">e9patch</a> 编译跳板（trampoline）并拼接进 <code>bin/resolve</code>；</li>
+<li>把捆绑的 4 个 FFmpeg 6.0.1 动态库替换成重编译的、启用 AAC 的 LGPL 构建。</li>
+</ul>
+<p>代价是它的 <code>makedepends</code> 里带着 <code>git</code>、<code>nasm</code>、<code>python-capstone</code>、<code>python-pyelftools</code>，<strong>构建会明显偏慢</strong>（要现编 FFmpeg，还要给 700 MB 的二进制打补丁），别以为卡死了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">paru -S davinci-resolve-studio-aacfix</span><br><span class="line"><span class="comment"># 或 yay -S davinci-resolve-studio-aacfix</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-正常の失败"><a href="#1-2-正常の失败" class="headerlink" title="1.2 正常の失败"></a>1.2 正常の失败</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fetching devel info...</span><br><span class="line">==&gt; Making package: davinci-resolve-studio-aacfix 21.1.1-1 (Thu 08 Oct 2026 10:22:52 PM CST)</span><br><span class="line">==&gt; Retrieving sources...</span><br><span class="line">  -&gt; Downloading DaVinci_Resolve_Studio_21.1.1_Linux.zip...</span><br><span class="line">curl: (3) URL rejected: Bad file:// URL</span><br><span class="line">==&gt; ERROR: Failure <span class="keyword">while</span> downloading file://DaVinci_Resolve_Studio_21.1.1_Linux.zip</span><br><span class="line">    Aborting...</span><br><span class="line">error: failed to download sources <span class="keyword">for</span> <span class="string">&#x27;davinci-resolve-studio-aacfix-21.1.1-1&#x27;</span></span><br><span class="line">error: packages failed to build: davinci-resolve-studio-aacfix-21.1.1-1</span><br></pre></td></tr></table></figure>
+
+<p>看 PKGBUILD 的 <code>source</code> 就明白了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span>=(<span class="string">&quot;file://DaVinci_Resolve_Studio_<span class="variable">$&#123;pkgver&#125;</span>_Linux.zip&quot;</span> ...)</span><br></pre></td></tr></table></figure>
+
+<p><code>file://</code> 意为”从本地取”， BD 的下载链接要求填表、带会话校验，<code>curl</code> 抓不到，所以这一步只能人来补。</p>
+<h2 id="1-3-手动下载安装包"><a href="#1-3-手动下载安装包" class="headerlink" title="1.3 手动下载安装包"></a>1.3 手动下载安装包</h2><ol>
+<li>打开 <a target="_blank" rel="noopener" href="https://www.blackmagicdesign.com/products/davinciresolve/studio">DRS 下载页</a>，点下载按钮。</li>
+<li>选 <code>DaVinci Resolve Studio 21</code> 底下的 <code>Linux</code>。</li>
+<li>弹出个人信息表单 —— 此处 BD 不做任何校验，随意填。</li>
+<li>拿到 <code>DaVinci_Resolve_Studio_21.1.1_Linux.zip</code>（约 10 GB；装好后 <code>/opt/resolve</code> 会占约 19 GB）。</li>
+</ol>
+<h2 id="1-4-构建安装"><a href="#1-4-构建安装" class="headerlink" title="1.4 构建安装"></a>1.4 构建安装</h2><p><code>paru</code> 已经失败过了，PKGBUILD 就在缓存里，把 zip 丢进去接着构建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.cache/paru/clone/davinci-resolve-studio-aacfix</span><br><span class="line"><span class="comment"># yay 用户对应 ~/.cache/yay/ 下的同名目录</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">mv</span> ~/Downloads/DaVinci_Resolve_Studio_21.1.1_Linux.zip ./</span><br><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
+
+<p>不留缓存，手动 clone 更干净：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://aur.archlinux.org/davinci-resolve-studio-aacfix.git</span><br><span class="line"><span class="built_in">cd</span> davinci-resolve-studio-aacfix</span><br><span class="line"><span class="built_in">mv</span> ~/Downloads/DaVinci_Resolve_Studio_21.1.1_Linux.zip ./</span><br><span class="line">makepkg -si</span><br></pre></td></tr></table></figure>
+
+<div class="note warning modern"><p>若报 <code>sha256sums</code> 校验失败，多半是 BD 换了包体。重新算一遍校验和再构建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updpkgsums &amp;&amp; makepkg -si</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="1-5-OpenCL：混合显卡机型注意"><a href="#1-5-OpenCL：混合显卡机型注意" class="headerlink" title="1.5 OpenCL：混合显卡机型注意"></a>1.5 OpenCL：混合显卡机型注意</h2><p><code>-aacfix</code> 的依赖里有个虚拟包 <code>opencl-driver</code>，它自己不提供实现，得看你用哪块卡：</p>
+<table>
+<thead>
+<tr>
+<th>显卡</th>
+<th>提供 <code>opencl-driver</code> 的包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NVIDIA</td>
+<td><code>opencl-nvidia</code></td>
+</tr>
+<tr>
+<td>AMD</td>
+<td><code>rocm-opencl-runtime</code></td>
+</tr>
+<tr>
+<td>Intel</td>
+<td><code>intel-compute-runtime</code></td>
+</tr>
+</tbody></table>
+<p>不装对应的那一个，DRS 启动时会直接不认 GPU。</p>
+<h1 id="二、破解"><a href="#二、破解" class="headerlink" title="二、破解"></a>二、破解</h1><h2 id="2-1-好习惯，先备份"><a href="#2-1-好习惯，先备份" class="headerlink" title="2.1 好习惯，先备份"></a>2.1 好习惯，先备份</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> -a /opt/resolve/bin/resolve /opt/resolve/bin/resolve.bak</span><br></pre></td></tr></table></figure>
+
+<p><code>perl -pi</code> 是<strong>就地重写</strong>：它按原 inode 打开并截断重写。712 MB 的文件在中途断电或 Ctrl-C，你手上就是一个废文件。备份不是可选项。</p>
+<h2 id="2-2-三条二进制补丁"><a href="#2-2-三条二进制补丁" class="headerlink" title="2.2 三条二进制补丁"></a>2.2 三条二进制补丁</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 补丁 1：把条件跳转改成无条件跳转，短路掉校验失败分支</span></span><br><span class="line"><span class="built_in">sudo</span> perl -pi -e <span class="string">&#x27;s/\x03\x00\x89\x45\xFC\x83\x7D\xFC\x00\x74\x11\x48\x8B\x45\xC8\x8B/\x03\x00\x89\x45\xFC\x83\x7D\xFC\x00\xEB\x11\x48\x8B\x45\xC8\x8B/g&#x27;</span> /opt/resolve/bin/resolve</span><br><span class="line"></span><br><span class="line"><span class="comment"># 补丁 2：同一处的更长上下文匹配（补丁 1 生效后它不会再命中，留着当保险）</span></span><br><span class="line"><span class="built_in">sudo</span> perl -pi -e <span class="string">&#x27;s/\x74\x11\x48\x8B\x45\xC8\x8B\x55\xFC\x89\x50\x58\xB8\x00\x00\x00/\xEB\x11\x48\x8B\x45\xC8\x8B\x55\xFC\x89\x50\x58\xB8\x00\x00\x00/g&#x27;</span> /opt/resolve/bin/resolve</span><br><span class="line"></span><br><span class="line"><span class="comment"># 补丁 3：反转一个告警分支的条件</span></span><br><span class="line"><span class="built_in">sudo</span> perl -0777 -pi -e <span class="string">&#x27;s/(\x40\x84\xED)\x74(.\xBF\x16\x00\x00\x00\xBE.\x01\x00\x00\xE8)/$1\x75$2/g&#x27;</span> /opt/resolve/bin/resolve</span><br></pre></td></tr></table></figure>
+
+<p>对应的反汇编（21.1.1，实际取自本机二进制）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">; 补丁 1 / 2 —— 0x74 是 je，0xEB 是 jmp</span><br><span class="line">83 7d fc 00     cmp  dword [rbp-0x4], 0</span><br><span class="line">74 11           je   +0x11              ; 原：条件成立 → 跳过下面这段</span><br><span class="line">eb 11           jmp  +0x11              ; 改后：无条件跳过</span><br><span class="line">48 8b 45 c8     mov  rax, [rbp-0x38]</span><br><span class="line">8b 55 fc        mov  edx, [rbp-0x4]</span><br><span class="line">89 50 58        mov  [rax+0x58], edx</span><br><span class="line">b8 00 00 00 00  mov  eax, 0</span><br><span class="line"></span><br><span class="line">; 补丁 3 —— 0x74 是 je，0x75 是 jne，条件方向反转</span><br><span class="line">40 84 ed        test bpl, bpl</span><br><span class="line">74 19           je   +0x19              ; 原</span><br><span class="line">75 19           jne  +0x19              ; 改后</span><br><span class="line">bf 16 00 00 00  mov  edi, 0x16</span><br><span class="line">be 3f 01 00 00  mov  esi, 0x13f</span><br><span class="line">e8 37 dc ff ff  call ...</span><br><span class="line">b8 ff ff ff ff  mov  eax, -1           ; 报错并返回 -1</span><br><span class="line">e9 2c 01 00 00  jmp  ...</span><br></pre></td></tr></table></figure>
+
+<p>三条补丁都是<strong>幂等</strong>的：改完的字节不再匹配原模式，重复执行什么也不会发生。所以”我不确定打没打过”的时候，直接再跑一遍即可。</p>
+<div class="note warning modern"><p>补丁 3 用了 <code>-0777</code>，Perl 会把整个 712 MB 二进制 slurp 进内存再回写。机器内存吃紧的话先关掉别的程序。</p>
+</div>
+
+<h2 id="2-3-放-license-文件"><a href="#2-3-放-license-文件" class="headerlink" title="2.3 放 license 文件"></a>2.3 放 license 文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /opt/resolve/.license</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&#x27;%s\n&#x27;</span> \</span><br><span class="line">  <span class="string">&#x27;LICENSE blackmagic davinciresolvestudio 999999 permanent uncounted&#x27;</span> \</span><br><span class="line">  <span class="string">&#x27; hostid=ANY issuer=CGP customer=CGP issued=28-dec-2023&#x27;</span> \</span><br><span class="line">  <span class="string">&#x27; akey=0000-0000-0000-0000 _ck=00 sig=&quot;00&quot;&#x27;</span> \</span><br><span class="line">| <span class="built_in">sudo</span> <span class="built_in">tee</span> /opt/resolve/.license/blackmagic.lic &gt; /dev/null</span><br></pre></td></tr></table></figure>
+
+<p>这是 FlexNet（FLEXlm）风格的授权文本，<code>permanent uncounted</code> 即永久、不限次数。</p>
+<p>第 2、3 行<strong>行首那个空格是格式的一部分</strong>，顺手删掉就废了。整个文件应当是 164 字节：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">wc</span> -c /opt/resolve/.license/blackmagic.lic   <span class="comment"># 164</span></span><br><span class="line"><span class="built_in">stat</span> -c <span class="string">&#x27;%a %U:%G&#x27;</span> /opt/resolve/.license/blackmagic.lic   <span class="comment"># 644 root:root</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-激活"><a href="#2-4-激活" class="headerlink" title="2.4 激活"></a>2.4 激活</h2><p>命令行没报错、没输出异常，就算打完了。启动 DRS，若仍弹出激活对话框，<strong>连续按 <code>0</code> 回车</strong>即可通过 —— 此时输入什么都会被接受，校验分支已经被短路了。</p>
+<h1 id="三、Wayland-与缩放修复"><a href="#三、Wayland-与缩放修复" class="headerlink" title="三、Wayland 与缩放修复"></a>三、Wayland 与缩放修复</h1><p>DRS 走 Qt5，在 Wayland 会话下常见启动失败或界面缩放诡异。强制它跑 X11 后端：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/share/applications/DaVinciResolve.desktop ~/.local/share/applications/</span><br><span class="line">sed -i <span class="string">&#x27;s|^Exec=.*|Exec=env QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 /opt/resolve/bin/resolve %u|&#x27;</span> \</span><br><span class="line">  ~/.local/share/applications/DaVinciResolve.desktop</span><br><span class="line">update-desktop-database ~/.local/share/applications 2&gt;/dev/null || <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><code>~/.local/share/applications/</code> 里的同名 desktop 文件优先级高于 <code>/usr/share/applications/</code>，所以不用动系统文件，升级也不会被覆盖。</p>
+<p><strong>混合显卡机型</strong>想让 DRS 固定跑独显（下面以 NVIDIA PRIME 为例），把 Exec 再补两个环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exec=<span class="built_in">env</span> __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 /opt/resolve/bin/resolve %u</span><br></pre></td></tr></table></figure>
+
+<p>前提是你确认它默认确实跑在了核显上，否则别乱加。</p>
+<h1 id="四、Q-A"><a href="#四、Q-A" class="headerlink" title="四、Q&amp;A"></a>四、Q&amp;A</h1><h2 id="Q1：交付页面无法-N-卡加速导出"><a href="#Q1：交付页面无法-N-卡加速导出" class="headerlink" title="Q1：交付页面无法 N 卡加速导出"></a>Q1：交付页面无法 N 卡加速导出</h2><p>装 <a target="_blank" rel="noopener" href="https://github.com/EdvinNilsson/ffmpeg_encoder_plugin">davinci-ffmpeg-encoder-plugin</a>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paru -S davinci-ffmpeg-encoder-plugin</span><br></pre></td></tr></table></figure>
+
+<p>它是 DRS 的 IOPlugin，安装到 <code>/opt/resolve/IOPlugins/ffmpeg_encoder_plugin.dvcp.bundle/Contents/Linux-x86-64/</code>。<strong>重启 Resolve</strong> 后在交付页把编解码器设为 H.264 &#x2F; H.265 &#x2F; AV1，类型里就会出现带 ffmpeg 的 NVENC 选项。</p>
+<h2 id="Q2：升级或重装后失效"><a href="#Q2：升级或重装后失效" class="headerlink" title="Q2：升级或重装后失效"></a>Q2：升级或重装后失效</h2><p><code>pacman</code> 升级会覆盖 <code>/opt/resolve/bin/resolve</code>，三条补丁需重打一遍。<code>/opt/resolve/.license/blackmagic.lic</code> 一般会被保留（包里的 <code>.license</code> 是个空目录）。</p>
+<h2 id="Q3：想彻底还原"><a href="#Q3：想彻底还原" class="headerlink" title="Q3：想彻底还原"></a>Q3：想彻底还原</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只还二进制</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> -a /opt/resolve/bin/resolve.bak /opt/resolve/bin/resolve</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者整包回炉（会重新构建，耗时）</span></span><br><span class="line">paru -S davinci-resolve-studio-aacfix</span><br></pre></td></tr></table></figure>
+
+<h1 id="五、题外话"><a href="#五、题外话" class="headerlink" title="五、题外话"></a>五、题外话</h1><p>Davinci Resolve Studio 是<strong>一次买断</strong>的专业视频软件，比 Adobe 的订阅制划算得多。经济条件允许的话，还是建议支持正版。</p>
+<h1 id="链接汇总"><a href="#链接汇总" class="headerlink" title="链接汇总"></a>链接汇总</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.blackmagicdesign.com/products/davinciresolve/studio">DaVinci Resolve Studio 下载页</a> - 官方安装包</li>
+<li><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/davinci-resolve-studio-aacfix">davinci-resolve-studio-aacfix</a> - 带 AAC 支持的 AUR 包</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/josephg/resolve-aacfix">resolve-aacfix</a> - AAC 补丁上游项目</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/GJDuck/e9patch">e9patch</a> - 二进制跳板注入工具</li>
+<li><a target="_blank" rel="noopener" href="https://aur.archlinux.org/packages/davinci-ffmpeg-encoder-plugin">davinci-ffmpeg-encoder-plugin</a> - FFmpeg 编码器插件 AUR 包</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/EdvinNilsson/ffmpeg_encoder_plugin">ffmpeg_encoder_plugin</a> - 插件上游项目</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://namddg667.top">CPlus</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://namddg667.top/2026/10/08/Davinci-Resolve-Studio-Linux-%E5%AE%89%E8%A3%85%E5%B9%B6%E7%A0%B4%E8%A7%A3/">https://namddg667.top/2026/10/08/Davinci-Resolve-Studio-Linux-%E5%AE%89%E8%A3%85%E5%B9%B6%E7%A0%B4%E8%A7%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://namddg667.top" target="_blank">CPlus's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Arch-Linux/">Arch Linux</a><a class="post-meta__tags" href="/tags/AUR/">AUR</a><a class="post-meta__tags" href="/tags/Davinci/">Davinci</a><a class="post-meta__tags" href="/tags/%E5%89%AA%E8%BE%91/">剪辑</a><a class="post-meta__tags" href="/tags/%E7%A0%B4%E8%A7%A3/">破解</a></div><div class="post-share"><div class="social-share" data-image="/res/images/avatar.webp" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/09/12/Linux%E8%BF%9E%E6%8E%A5JLU%E5%90%89%E6%9E%97%E5%A4%A7%E5%AD%A6%E6%9C%89%E7%BA%BF%E7%BD%91/" title="Linux连接JLU吉林大学有线网"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Linux连接JLU吉林大学有线网</div></div><div class="info-2"><div class="info-item-1">前言高考完也是来泥🐔了。军训期间折腾了一下校园网，发现 Linux 相关的资料并不多，而且泥🐔官网的 jlu drcom 根本用不了，搞了半天才吃上泥🐔校园有线网 100MB&#x2F;s 的速度。 本人的电脑环境是 Arch Linux + NetworkManager。 网线购买泥🐔大学城二公寓的网口在门框上，非常高。我靠窗，买的 10m 绿联六类千兆网线（其实 8m 就够了，奈何京东 8m 比 10m 还贵，恼），不靠窗的室友买 5m 就够用。 开始配置网...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/02/19/Arch%20Linux%20%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" title="Arch Linux 软件推荐"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-19</div><div class="info-item-2">Arch Linux 软件推荐</div></div><div class="info-2"><div class="info-item-1">Arch Linux 软件推荐以下是为 Arch Linux 用户精选的一系列实用软件，涵盖了日常使用、开发、多媒体创作、系统工具等多个方面。所有软件均可通过官方仓库或 AUR 轻松安装。  🖥️ 窗口管理器与桌面环境Hyprland一款基于 Wayland 的动态平铺窗口管理器，以出色的视觉效果和高度可定制性著称。它支持动画、圆角、模糊等现代特性，适合追求极致效率和美观的用户。   1sudo pacman -S hyprland   🖥️ 终端模拟器Alacri...</div></div></div></a><a class="pagination-related" href="/2026/09/12/Linux%E8%BF%9E%E6%8E%A5JLU%E5%90%89%E6%9E%97%E5%A4%A7%E5%AD%A6%E6%9C%89%E7%BA%BF%E7%BD%91/" title="Linux连接JLU吉林大学有线网"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-09-12</div><div class="info-item-2">Linux连接JLU吉林大学有线网</div></div><div class="info-2"><div class="info-item-1">前言高考完也是来泥🐔了。军训期间折腾了一下校园网，发现 Linux 相关的资料并不多，而且泥🐔官网的 jlu drcom 根本用不了，搞了半天才吃上泥🐔校园有线网 100MB&#x2F;s 的速度。 本人的电脑环境是 Arch Linux + NetworkManager。 网线购买泥🐔大学城二公寓的网口在门框上，非常高。我靠窗，买的 10m 绿联六类千兆网线（其实 8m 就够了，奈何京东 8m 比 10m 还贵，恼），不靠窗的室友买 5m 就够用。 开始配置网...</div></div></div></a><a class="pagination-related" href="/2026/08/13/Arch%20Linux%20%E4%BD%BF%E7%94%A8%20DWProton%20%E7%8E%A9%E9%B8%A3%E6%BD%AE%E6%8C%87%E5%8D%97/" title="Arch Linux 使用 Lutris + DWProton 运行鸣潮 | Linux 游戏折腾记录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-13</div><div class="info-item-2">Arch Linux 使用 Lutris + DWProton 运行鸣潮 | Linux 游戏折腾记录</div></div><div class="info-2"><div class="info-item-1">1本人为 Arch Linux + N卡用户，玩了几个月，体验下来还不错 1.环境准备1.1 安装 Lutris这是我使用的游戏管理器，非常推荐 12# arch linux用户可通过pacman安装sudo pacman -S lutris 其他发行版用户的话可前往 官网，提供了很多发行版的下载方法 1.2 安装 DWProton这是对”anime games”优化的 proton 版本，其他几个 proton 会被鸣潮的反作弊拦截导致无法进入游戏 123# arch...</div></div></div></a><a class="pagination-related" href="/2026/08/14/%E5%93%86%E8%90%8C%E7%8B%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="萌狐云服务器搭建博客命令整合"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-08-14</div><div class="info-item-2">萌狐云服务器搭建博客命令整合</div></div><div class="info-2"><div class="info-item-1">安装 nvm :1curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash 安装 npm :1nvm install --lts 安装 hexo :1npm install hexo-cli -g 创建个人博客:1hexo init [你想要的博客名] 切换到博客根目录:1cd [你想要的博客名] 安装所需包1npm install 安装 buttferfly 主题:1...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/res/images/avatar.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="author-info-name">CPlus</div><div class="author-info-description">CPlus 的个人博客，记录 Arch Linux、Linux 折腾、游戏游玩与编程开发等技术笔记和日常分享。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DDG667"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/DDG667" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:namddg667@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">一、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-AUR-%E5%8C%85%E9%80%89%E6%8B%A9"><span class="toc-number">2.1.</span> <span class="toc-text">1.1  AUR 包选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%AD%A3%E5%B8%B8%E3%81%AE%E5%A4%B1%E8%B4%A5"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 正常の失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%89%8B%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 手动下载安装包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E6%9E%84%E5%BB%BA%E5%AE%89%E8%A3%85"><span class="toc-number">2.4.</span> <span class="toc-text">1.4 构建安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-OpenCL%EF%BC%9A%E6%B7%B7%E5%90%88%E6%98%BE%E5%8D%A1%E6%9C%BA%E5%9E%8B%E6%B3%A8%E6%84%8F"><span class="toc-number">2.5.</span> <span class="toc-text">1.5 OpenCL：混合显卡机型注意</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%A0%B4%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">二、破解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%A5%BD%E4%B9%A0%E6%83%AF%EF%BC%8C%E5%85%88%E5%A4%87%E4%BB%BD"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 好习惯，先备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%B8%89%E6%9D%A1%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A5%E4%B8%81"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 三条二进制补丁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%94%BE-license-%E6%96%87%E4%BB%B6"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 放 license 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%BF%80%E6%B4%BB"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 激活</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Wayland-%E4%B8%8E%E7%BC%A9%E6%94%BE%E4%BF%AE%E5%A4%8D"><span class="toc-number">4.</span> <span class="toc-text">三、Wayland 与缩放修复</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Q-A"><span class="toc-number">5.</span> <span class="toc-text">四、Q&amp;A</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Q1%EF%BC%9A%E4%BA%A4%E4%BB%98%E9%A1%B5%E9%9D%A2%E6%97%A0%E6%B3%95-N-%E5%8D%A1%E5%8A%A0%E9%80%9F%E5%AF%BC%E5%87%BA"><span class="toc-number">5.1.</span> <span class="toc-text">Q1：交付页面无法 N 卡加速导出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q2%EF%BC%9A%E5%8D%87%E7%BA%A7%E6%88%96%E9%87%8D%E8%A3%85%E5%90%8E%E5%A4%B1%E6%95%88"><span class="toc-number">5.2.</span> <span class="toc-text">Q2：升级或重装后失效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q3%EF%BC%9A%E6%83%B3%E5%BD%BB%E5%BA%95%E8%BF%98%E5%8E%9F"><span class="toc-number">5.3.</span> <span class="toc-text">Q3：想彻底还原</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%A2%98%E5%A4%96%E8%AF%9D"><span class="toc-number">6.</span> <span class="toc-text">五、题外话</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%B1%87%E6%80%BB"><span class="toc-number">7.</span> <span class="toc-text">链接汇总</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/10/08/Davinci-Resolve-Studio-Linux-%E5%AE%89%E8%A3%85%E5%B9%B6%E7%A0%B4%E8%A7%A3/" title="Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1">Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1</a><time datetime="2026-10-08T14:13:21.000Z" title="发表于 2026-10-08 22:13:21">2026-10-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/12/Linux%E8%BF%9E%E6%8E%A5JLU%E5%90%89%E6%9E%97%E5%A4%A7%E5%AD%A6%E6%9C%89%E7%BA%BF%E7%BD%91/" title="Linux连接JLU吉林大学有线网">Linux连接JLU吉林大学有线网</a><time datetime="2026-09-12T07:46:56.000Z" title="发表于 2026-09-12 15:46:56">2026-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/14/%E5%93%86%E8%90%8C%E7%8B%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" title="萌狐云服务器搭建博客命令整合">萌狐云服务器搭建博客命令整合</a><time datetime="2026-08-14T11:10:53.000Z" title="发表于 2026-08-14 19:10:53">2026-08-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/13/Arch%20Linux%20%E4%BD%BF%E7%94%A8%20DWProton%20%E7%8E%A9%E9%B8%A3%E6%BD%AE%E6%8C%87%E5%8D%97/" title="Arch Linux 使用 Lutris + DWProton 运行鸣潮 | Linux 游戏折腾记录">Arch Linux 使用 Lutris + DWProton 运行鸣潮 | Linux 游戏折腾记录</a><time datetime="2026-08-13T07:11:07.000Z" title="发表于 2026-08-13 15:11:07">2026-08-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/19/Arch%20Linux%20%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" title="Arch Linux 软件推荐">Arch Linux 软件推荐</a><time datetime="2026-02-19T07:25:13.000Z" title="发表于 2026-02-19 15:25:13">2026-02-19</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By CPlus</span><!-- Hexo and Butterfly credits removed per site owner request--></div><div class="footer_custom_text"><a href="https://icp.gov.moe/?keyword=20260403" target="_blank">萌ICP备20260403号</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://fastly.jsdelivr.net/npm/katex@0.16.28/dist/katex.min.css')
+    if (false) {
+      await btf.getScript('https://fastly.jsdelivr.net/npm/katex@0.16.28/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script>(function(){
+  if (window.MusicPlayer) return;
+
+  var playlist = [];
+  var currentIndex = -1;
+  var audio = null;
+  var loadingPromise = null;
+
+  function parseName(fname){
+    var base = String(fname).replace(/\.[^.]+$/, '');
+    var parts = base.split(' - ');
+    if (parts.length >= 2) {
+      return { artist: parts[0].trim(), title: parts.slice(1).join(' - ').trim() };
+    }
+    return { artist: '', title: base };
+  }
+
+  function getState(){
+    return {
+      playlist: playlist.slice(),
+      index: currentIndex,
+      playing: !!(audio && !audio.paused)
+    };
+  }
+
+  function dispatchChange(){
+    document.dispatchEvent(new CustomEvent('musicplayer:change', { detail: getState() }));
+  }
+
+  function ensureAudio(){
+    if (audio) return audio;
+    audio = new Audio();
+    audio.id = 'mm-audio';
+    audio.preload = 'none';
+    audio.addEventListener('ended', next);
+    audio.addEventListener('play', function(){ updateFloating(); dispatchChange(); });
+    audio.addEventListener('pause', function(){ updateFloating(); dispatchChange(); });
+    document.body.appendChild(audio);
+    return audio;
+  }
+
+  function load(){
+    if (playlist.length) return Promise.resolve(playlist);
+    if (loadingPromise) return loadingPromise;
+    loadingPromise = fetch('/res/audios/list.json')
+      .then(function(r){ if (!r.ok) throw new Error('no playlist'); return r.json(); })
+      .then(function(data){
+        playlist = Array.isArray(data) ? data.slice() : [];
+        return playlist;
+      })
+      .catch(function(){ playlist = []; return playlist; })
+      .finally(function(){ loadingPromise = null; });
+    return loadingPromise;
+  }
+
+  function play(i){
+    if (!playlist.length) return;
+    if (i < 0) i = 0;
+    if (i >= playlist.length) i = playlist.length - 1;
+    currentIndex = i;
+    var a = ensureAudio();
+    var src = '/res/audios/' + encodeURIComponent(playlist[i]);
+    if (a.getAttribute('src') !== src) a.setAttribute('src', src);
+    a.play().catch(function(){});
+    showFloating();
+    updateFloating();
+    highlightPlaying();
+    dispatchChange();
+  }
+
+  function toggle(){
+    var a = ensureAudio();
+    if (!playlist.length) {
+      load().then(function(){ if (playlist.length) play(currentIndex < 0 ? 0 : currentIndex); });
+      return;
+    }
+    if (!a.getAttribute('src') && currentIndex < 0) { play(0); return; }
+    if (a.paused) a.play().catch(function(){}); else a.pause();
+    updateFloating();
+  }
+
+  function next(){ if (playlist.length) play((currentIndex + 1) % playlist.length); }
+  function prev(){ if (playlist.length) play((currentIndex - 1 + playlist.length) % playlist.length); }
+
+  function createFloating(){
+    if (document.getElementById('mm-floating')) return;
+    var f = document.createElement('div');
+    f.id = 'mm-floating';
+
+    var prevBtn = document.createElement('button');
+    prevBtn.type = 'button';
+    prevBtn.title = '上一首';
+    prevBtn.innerHTML = '<i class="fa-solid fa-backward-step"></i>';
+    prevBtn.addEventListener('click', prev);
+
+    var playBtn = document.createElement('button');
+    playBtn.type = 'button';
+    playBtn.id = 'mm-f-play';
+    playBtn.title = '播放/暂停';
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+    playBtn.addEventListener('click', toggle);
+
+    var nextBtn = document.createElement('button');
+    nextBtn.type = 'button';
+    nextBtn.title = '下一首';
+    nextBtn.innerHTML = '<i class="fa-solid fa-forward-step"></i>';
+    nextBtn.addEventListener('click', next);
+
+    var title = document.createElement('div');
+    title.className = 'mm-f-title';
+    title.id = 'mm-f-title';
+
+    var closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.title = '关闭';
+    closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    closeBtn.addEventListener('click', hideFloating);
+
+    f.appendChild(prevBtn);
+    f.appendChild(playBtn);
+    f.appendChild(nextBtn);
+    f.appendChild(title);
+    f.appendChild(closeBtn);
+    document.body.appendChild(f);
+  }
+
+  function showFloating(){ createFloating(); var f = document.getElementById('mm-floating'); if (f) f.style.display = 'flex'; }
+  function hideFloating(){ var f = document.getElementById('mm-floating'); if (f) f.style.display = 'none'; }
+
+  function updateFloating(){
+    var f = document.getElementById('mm-floating');
+    if (!f) return;
+    var title = document.getElementById('mm-f-title');
+    var playBtn = document.getElementById('mm-f-play');
+    var name = playlist[currentIndex];
+    if (title) title.textContent = name ? parseName(name).title : '';
+    if (playBtn) playBtn.innerHTML = (audio && !audio.paused) ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+  }
+
+  function highlightPlaying(){
+    document.querySelectorAll('[data-music-index]').forEach(function(row){
+      var active = Number(row.getAttribute('data-music-index')) === currentIndex;
+      row.classList.toggle('playing', active);
+      var btn = row.querySelector('button');
+      if (btn) {
+        var playing = active && audio && !audio.paused;
+        btn.innerHTML = playing ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+        btn.title = playing ? '暂停' : '播放';
+      }
+    });
+  }
+
+  // ----- quick-select modal -----
+  function createModal(){
+    if (document.getElementById('music-modal-overlay')) return;
+    var overlay = document.createElement('div');
+    overlay.id = 'music-modal-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+
+    var box = document.createElement('div');
+    box.id = 'music-modal';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', '音乐');
+
+    var header = document.createElement('div');
+    header.className = 'mm-header';
+    var h = document.createElement('div');
+    h.className = 'mm-title';
+    h.innerHTML = '<i class="fa-solid fa-music"></i>音乐';
+    var close = document.createElement('button');
+    close.type = 'button';
+    close.title = '关闭';
+    close.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    close.addEventListener('click', closeModal);
+    header.appendChild(h);
+    header.appendChild(close);
+
+    var list = document.createElement('ul');
+    list.className = 'mm-list';
+    list.id = 'mm-list';
+
+    var playerWrap = document.createElement('div');
+    playerWrap.className = 'mm-player';
+    playerWrap.id = 'mm-player';
+
+    var footer = document.createElement('div');
+    footer.className = 'mm-footer';
+    footer.innerHTML = '<a href="/music/"><i class="fa-solid fa-up-right-from-square"></i> 打开独立播放页</a>';
+    var pageLink = footer.querySelector('a');
+    if (pageLink) pageLink.addEventListener('click', closeModal);
+
+    box.appendChild(header);
+    box.appendChild(list);
+    box.appendChild(playerWrap);
+    box.appendChild(footer);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', function(e){ if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && overlay.style.display === 'flex') closeModal();
+    });
+  }
+
+  function renderModalList(){
+    var list = document.getElementById('mm-list');
+    if (!list) return;
+    list.innerHTML = '';
+    playlist.forEach(function(fname, i){
+      var info = parseName(fname);
+      var li = document.createElement('li');
+      li.className = 'mm-item';
+      li.setAttribute('data-music-index', i);
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.title = '播放';
+      btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      btn.addEventListener('click', function(){
+        if (currentIndex === i && audio && !audio.paused) toggle(); else play(i);
+      });
+
+      var meta = document.createElement('div');
+      meta.className = 'mm-meta';
+      var nameEl = document.createElement('span');
+      nameEl.className = 'mm-name';
+      nameEl.textContent = info.title;
+      meta.appendChild(nameEl);
+      if (info.artist) {
+        var artistEl = document.createElement('span');
+        artistEl.className = 'mm-artist';
+        artistEl.textContent = info.artist;
+        meta.appendChild(artistEl);
+      }
+
+      li.appendChild(btn);
+      li.appendChild(meta);
+      list.appendChild(li);
+    });
+  }
+
+  function openModal(){
+    createModal();
+    var overlay = document.getElementById('music-modal-overlay');
+    if (!overlay) return;
+    overlay.style.display = 'flex';
+    overlay.setAttribute('aria-hidden', 'false');
+    load().then(function(){
+      renderModalList();
+      highlightPlaying();
+    });
+  }
+
+  function closeModal(){
+    var overlay = document.getElementById('music-modal-overlay');
+    if (overlay) {
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  // Intercept nav clicks on the Music link so it opens the quick-select modal.
+  // Only links inside the navigation / mobile sidebar are intercepted; other
+  // links to /music (e.g. the modal footer) must navigate normally.
+  function onNavClick(e){
+    if (e.defaultPrevented) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('#nav a[href], #sidebar-menus a[href]');
+    if (!a || a.target === '_blank') return;
+    var hrefRaw = a.getAttribute('href') || '';
+    try { hrefRaw = hrefRaw.replace(/^https?:\/\/[^/]+/, ''); } catch (err) {}
+    var href = hrefRaw.replace(/\/+$/, '').replace(/^\//, '');
+    if (href === 'music' || href === 'music/index' || href === 'music/') {
+      e.preventDefault();
+      e.stopPropagation();
+      openModal();
+    }
+  }
+
+  document.addEventListener('click', onNavClick, true);
+
+  document.addEventListener('DOMContentLoaded', function(){
+    createFloating();
+    createModal();
+    updateFloating();
+  });
+
+  document.addEventListener('musicplayer:change', function(){
+    updateFloating();
+    highlightPlaying();
+  });
+
+  window.MusicPlayer = {
+    load: load,
+    play: function(i){ load().then(function(){ play(i); }); },
+    toggle: toggle,
+    next: next,
+    prev: prev,
+    parseName: parseName,
+    getState: getState
+  };
+})();</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1.1.6/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://fastly.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      true
+        ? pjax.loadUrl('/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章…" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.4"></script></div></div></body></html>
