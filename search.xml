@@ -227,81 +227,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux连接JLU吉林大学有线网</title>
-    <url>/2026/09/12/Linux%E8%BF%9E%E6%8E%A5JLU%E5%90%89%E6%9E%97%E5%A4%A7%E5%AD%A6%E6%9C%89%E7%BA%BF%E7%BD%91/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>高考完也是来泥🐔了。军训期间折腾了一下校园网，发现 Linux 相关的资料并不多，而且泥🐔官网的 jlu drcom 根本用不了，搞了半天才吃上泥🐔校园有线网 100MB&#x2F;s 的速度。</p>
-<p>本人的电脑环境是 Arch Linux + NetworkManager。</p>
-<h1 id="网线购买"><a href="#网线购买" class="headerlink" title="网线购买"></a>网线购买</h1><p>泥🐔大学城二公寓的网口在门框上，非常高。我靠窗，买的 10m 绿联六类千兆网线（其实 8m 就够了，奈何京东 8m 比 10m 还贵，恼），不靠窗的室友买 5m 就够用。</p>
-<h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><h2 id="网络开户"><a href="#网络开户" class="headerlink" title="网络开户"></a><del>网络开户</del></h2><p><del>你都用 Linux 了，开户这些应该就不用写了（懒）</del></p>
-<h2 id="物理-MAC-设置"><a href="#物理-MAC-设置" class="headerlink" title="物理 MAC 设置"></a>物理 MAC 设置</h2><p>首先找物理网卡地址，打开终端：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip a</span><br></pre></td></tr></table></figure>
-
-<p>我用的是笔记本电脑，输出如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: enp4s0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether a1:b2:c3:d4:e5:f6 brd ff:ff:ff:ff:ff:ff <span class="comment"># 这一行开头的 &quot;a1:b2:c3:d4:e5:f6&quot; 就是需要的网卡物理 MAC 地址</span></span><br><span class="line">    altname enxa1b2c3d4e5f6</span><br><span class="line">3: wlp2s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether f6:e5:d4:c3:b2:a1 brd ff:ff:ff:ff:ff:ff permaddr a2:b3:c4:d5:e6:f7</span><br><span class="line">    altname wlxf6e5d4c3b2a1</span><br><span class="line">4...</span><br></pre></td></tr></table></figure>
-
-<p>要是判断不了哪块是以太网网卡，就连个 WiFi：状态为 UP 的是无线网卡，另一个状态为 DOWN 的就是物理网卡。（<del>还判断不出来就把输出丢给 AI</del>）</p>
-<p>查到网卡地址后就可以填上了，附<a href="https://ip.jlu.edu.cn/pay">泥🐔校园网自助服务平台链接</a>。</p>
-<h2 id="NetworkManager-设置"><a href="#NetworkManager-设置" class="headerlink" title="NetworkManager 设置"></a>NetworkManager 设置</h2><p>命令行至上（（</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nmcli connection add \ <span class="comment"># 用 nmcli 创建新的连接</span></span><br><span class="line">  <span class="built_in">type</span> <span class="string">&quot;ethernet&quot;</span> \ <span class="comment"># 设置添加类型为以太网</span></span><br><span class="line">  con-name <span class="string">&quot;jlu&quot;</span> \ <span class="comment"># 就设置个别名，什么都行</span></span><br><span class="line">  ifname <span class="string">&quot;enp4s0&quot;</span> \ <span class="comment"># 使用的物理网卡名，确保与前面填 MAC 地址的网卡是同一个</span></span><br><span class="line">  ipv4.method <span class="string">&quot;manual&quot;</span> \ <span class="comment"># IPv4 配置方式：手动配置</span></span><br><span class="line">  ipv4.addresses <span class="string">&quot;114.51.41.91/24&quot;</span> \ <span class="comment"># 你在泥🐔开户时分配到的 IPv4 地址，记得后面加 &quot;/24&quot;，表示子网掩码为 255.255.255.0</span></span><br><span class="line">  ipv4.gateway <span class="string">&quot;114.51.41.92&quot;</span> \ <span class="comment"># 网关地址</span></span><br><span class="line">  ipv4.dns <span class="string">&quot;11.45.1.4&quot;</span> <span class="comment"># DNS 地址，有多个就用空格隔开，eg: &quot;10.10.10.10 202.98.18.3&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>复制上面的命令，再把参数换成自己的即可。然后：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nmcli connection up <span class="string">&quot;jlu&quot;</span> <span class="comment"># jlu 换成你上面设置的名字</span></span><br></pre></td></tr></table></figure>
-
-<p>连接上。</p>
-<p>图形界面当然也可以通过 <a href="https://gitlab.gnome.org/GNOME/network-manager-applet">nm-applet</a> 设置，但不如命令行快捷，所需参数也都一样，不再赘述。</p>
-<h2 id="Drcom-认证客户端"><a href="#Drcom-认证客户端" class="headerlink" title="Drcom 认证客户端"></a>Drcom 认证客户端</h2><p>此时因为没有认证，打开任何网页都会跳到 drcom 的下载页面，而泥🐔官网的 Linux 客户端年久失修，根本用不了。</p>
-<p>好在 GitHub 上有不少泥🐔学生写的客户端，这里使用其中之一：<a href="https://github.com/CrackTC/dr-jlu-linux">dr-jlu-linux</a>。</p>
-<p>配置方法蛮简单的，确保安装了 git 和 make：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/CrackTC/dr-jlu-linux.git <span class="comment"># 将仓库 clone 到本地，校园网有时连不上 GitHub，可以去 https://github.akams.cn 找找加速网站</span></span><br><span class="line"><span class="built_in">cd</span> dr-jlu-linux</span><br></pre></td></tr></table></figure>
-
-<p>然后把 <code>Login/main.cpp</code> 第五行的 <code>&lt;username&gt;</code> 换成你的校园邮箱 @ 前面的部分，<code>&lt;password&gt;</code> 换成校园邮箱密码；第六行的 <code>xxxxxxxxxxxx</code> 换成你的网卡 MAC 地址（去掉冒号），eg: <code>a1b2c3d4e5f6</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make build <span class="comment"># 编译</span></span><br><span class="line">make run <span class="comment"># 运行</span></span><br></pre></td></tr></table></figure>
-
-<p>此后每次运行 <code>make run</code> 即可（改了邮箱或密码，就编辑文件后执行 <code>make build &amp;&amp; make run</code>）。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>泥🐔校园有线网非常迅速，多线程能把我千兆网线跑满。我折腾了快 20min 才弄好，此教程旨在分享经历，让 Linux 用户少走弯路。</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>JLU</tag>
-        <tag>网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人机日志</title>
-    <url>/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<p>世界已经改变，谁还在留恋?</p>
-]]></content>
-      <tags>
-        <tag>memory</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>萌狐云服务器搭建博客命令整合</title>
-    <url>/2026/08/14/%E5%93%86%E8%90%8C%E7%8B%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h5 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm :"></a>安装 nvm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash</span><br></pre></td></tr></table></figure>
-<h5 id="安装-npm"><a href="#安装-npm" class="headerlink" title="安装 npm :"></a>安装 npm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
-<h5 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo :"></a>安装 hexo :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-<h5 id="创建个人博客"><a href="#创建个人博客" class="headerlink" title="创建个人博客:"></a>创建个人博客:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init [你想要的博客名]</span><br></pre></td></tr></table></figure>
-<h5 id="切换到博客根目录"><a href="#切换到博客根目录" class="headerlink" title="切换到博客根目录:"></a>切换到博客根目录:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> [你想要的博客名]</span><br></pre></td></tr></table></figure>
-<h5 id="安装所需包"><a href="#安装所需包" class="headerlink" title="安装所需包"></a>安装所需包</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<h5 id="安装-buttferfly-主题"><a href="#安装-buttferfly-主题" class="headerlink" title="安装 buttferfly 主题:"></a>安装 buttferfly 主题:</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-theme-butterfly</span><br></pre></td></tr></table></figure>
-<h5 id="创建你的第一篇文章"><a href="#创建你的第一篇文章" class="headerlink" title="创建你的第一篇文章:"></a>创建你的第一篇文章:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [文章名]</span><br></pre></td></tr></table></figure>
-<p>此时文章会被放在 <code>source/_posts</code> 目录中，以后随便找个markdown编辑器写</p>
-<h5 id="生产静态文件"><a href="#生产静态文件" class="headerlink" title="生产静态文件"></a>生产静态文件</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-<p>此时网页文件会在 <code>public/</code> 下生成</p>
-<h5 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<h5 id="这里放一下-hexo-和-butterfly-的网页"><a href="#这里放一下-hexo-和-butterfly-的网页" class="headerlink" title="这里放一下 hexo 和 butterfly 的网页"></a>这里放一下 hexo 和 butterfly 的网页</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://hexo.io</span><br><span class="line">https://butterfly.js.org</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="视频为一个人在三天完成，不妥之处见谅"><a href="#视频为一个人在三天完成，不妥之处见谅" class="headerlink" title="视频为一个人在三天完成，不妥之处见谅"></a>视频为一个人在三天完成，不妥之处见谅</h2><h3 id="配音-达妮娅-GPT-SoVITs"><a href="#配音-达妮娅-GPT-SoVITs" class="headerlink" title="配音: 达妮娅 GPT-SoVITs"></a>配音: 达妮娅 GPT-SoVITs</h3><h3 id="所使用到的软件-Kdenlive-Blender"><a href="#所使用到的软件-Kdenlive-Blender" class="headerlink" title="所使用到的软件: Kdenlive, Blender"></a>所使用到的软件: Kdenlive, Blender</h3>]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>教程</tag>
-        <tag>博客</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Arch Linux 安装并破解 DaVinci Resolve Studio 21.1.1</title>
     <url>/2026/10/08/Davinci-Resolve-Studio-Linux-%E5%AE%89%E8%A3%85%E5%B9%B6%E7%A0%B4%E8%A7%A3/</url>
     <content><![CDATA[<blockquote>
@@ -435,6 +360,81 @@
         <tag>Davinci</tag>
         <tag>剪辑</tag>
         <tag>破解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux连接JLU吉林大学有线网</title>
+    <url>/2026/09/12/Linux%E8%BF%9E%E6%8E%A5JLU%E5%90%89%E6%9E%97%E5%A4%A7%E5%AD%A6%E6%9C%89%E7%BA%BF%E7%BD%91/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>高考完也是来泥🐔了。军训期间折腾了一下校园网，发现 Linux 相关的资料并不多，而且泥🐔官网的 jlu drcom 根本用不了，搞了半天才吃上泥🐔校园有线网 100MB&#x2F;s 的速度。</p>
+<p>本人的电脑环境是 Arch Linux + NetworkManager。</p>
+<h1 id="网线购买"><a href="#网线购买" class="headerlink" title="网线购买"></a>网线购买</h1><p>泥🐔大学城二公寓的网口在门框上，非常高。我靠窗，买的 10m 绿联六类千兆网线（其实 8m 就够了，奈何京东 8m 比 10m 还贵，恼），不靠窗的室友买 5m 就够用。</p>
+<h1 id="开始配置"><a href="#开始配置" class="headerlink" title="开始配置"></a>开始配置</h1><h2 id="网络开户"><a href="#网络开户" class="headerlink" title="网络开户"></a><del>网络开户</del></h2><p><del>你都用 Linux 了，开户这些应该就不用写了（懒）</del></p>
+<h2 id="物理-MAC-设置"><a href="#物理-MAC-设置" class="headerlink" title="物理 MAC 设置"></a>物理 MAC 设置</h2><p>首先找物理网卡地址，打开终端：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip a</span><br></pre></td></tr></table></figure>
+
+<p>我用的是笔记本电脑，输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: enp4s0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether a1:b2:c3:d4:e5:f6 brd ff:ff:ff:ff:ff:ff <span class="comment"># 这一行开头的 &quot;a1:b2:c3:d4:e5:f6&quot; 就是需要的网卡物理 MAC 地址</span></span><br><span class="line">    altname enxa1b2c3d4e5f6</span><br><span class="line">3: wlp2s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether f6:e5:d4:c3:b2:a1 brd ff:ff:ff:ff:ff:ff permaddr a2:b3:c4:d5:e6:f7</span><br><span class="line">    altname wlxf6e5d4c3b2a1</span><br><span class="line">4...</span><br></pre></td></tr></table></figure>
+
+<p>要是判断不了哪块是以太网网卡，就连个 WiFi：状态为 UP 的是无线网卡，另一个状态为 DOWN 的就是物理网卡。（<del>还判断不出来就把输出丢给 AI</del>）</p>
+<p>查到网卡地址后就可以填上了，附<a href="https://ip.jlu.edu.cn/pay">泥🐔校园网自助服务平台链接</a>。</p>
+<h2 id="NetworkManager-设置"><a href="#NetworkManager-设置" class="headerlink" title="NetworkManager 设置"></a>NetworkManager 设置</h2><p>命令行至上（（</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nmcli connection add \ <span class="comment"># 用 nmcli 创建新的连接</span></span><br><span class="line">  <span class="built_in">type</span> <span class="string">&quot;ethernet&quot;</span> \ <span class="comment"># 设置添加类型为以太网</span></span><br><span class="line">  con-name <span class="string">&quot;jlu&quot;</span> \ <span class="comment"># 就设置个别名，什么都行</span></span><br><span class="line">  ifname <span class="string">&quot;enp4s0&quot;</span> \ <span class="comment"># 使用的物理网卡名，确保与前面填 MAC 地址的网卡是同一个</span></span><br><span class="line">  ipv4.method <span class="string">&quot;manual&quot;</span> \ <span class="comment"># IPv4 配置方式：手动配置</span></span><br><span class="line">  ipv4.addresses <span class="string">&quot;114.51.41.91/24&quot;</span> \ <span class="comment"># 你在泥🐔开户时分配到的 IPv4 地址，记得后面加 &quot;/24&quot;，表示子网掩码为 255.255.255.0</span></span><br><span class="line">  ipv4.gateway <span class="string">&quot;114.51.41.92&quot;</span> \ <span class="comment"># 网关地址</span></span><br><span class="line">  ipv4.dns <span class="string">&quot;11.45.1.4&quot;</span> <span class="comment"># DNS 地址，有多个就用空格隔开，eg: &quot;10.10.10.10 202.98.18.3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>复制上面的命令，再把参数换成自己的即可。然后：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nmcli connection up <span class="string">&quot;jlu&quot;</span> <span class="comment"># jlu 换成你上面设置的名字</span></span><br></pre></td></tr></table></figure>
+
+<p>连接上。</p>
+<p>图形界面当然也可以通过 <a href="https://gitlab.gnome.org/GNOME/network-manager-applet">nm-applet</a> 设置，但不如命令行快捷，所需参数也都一样，不再赘述。</p>
+<h2 id="Drcom-认证客户端"><a href="#Drcom-认证客户端" class="headerlink" title="Drcom 认证客户端"></a>Drcom 认证客户端</h2><p>此时因为没有认证，打开任何网页都会跳到 drcom 的下载页面，而泥🐔官网的 Linux 客户端年久失修，根本用不了。</p>
+<p>好在 GitHub 上有不少泥🐔学生写的客户端，这里使用其中之一：<a href="https://github.com/CrackTC/dr-jlu-linux">dr-jlu-linux</a>。</p>
+<p>配置方法蛮简单的，确保安装了 git 和 make：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/CrackTC/dr-jlu-linux.git <span class="comment"># 将仓库 clone 到本地，校园网有时连不上 GitHub，可以去 https://github.akams.cn 找找加速网站</span></span><br><span class="line"><span class="built_in">cd</span> dr-jlu-linux</span><br></pre></td></tr></table></figure>
+
+<p>然后把 <code>Login/main.cpp</code> 第五行的 <code>&lt;username&gt;</code> 换成你的校园邮箱 @ 前面的部分，<code>&lt;password&gt;</code> 换成校园邮箱密码；第六行的 <code>xxxxxxxxxxxx</code> 换成你的网卡 MAC 地址（去掉冒号），eg: <code>a1b2c3d4e5f6</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make build <span class="comment"># 编译</span></span><br><span class="line">make run <span class="comment"># 运行</span></span><br></pre></td></tr></table></figure>
+
+<p>此后每次运行 <code>make run</code> 即可（改了邮箱或密码，就编辑文件后执行 <code>make build &amp;&amp; make run</code>）。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>泥🐔校园有线网非常迅速，多线程能把我千兆网线跑满。我折腾了快 20min 才弄好，此教程旨在分享经历，让 Linux 用户少走弯路。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>JLU</tag>
+        <tag>网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人机日志</title>
+    <url>/2026/02/18/%E4%BA%BA%E6%9C%BA%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<p>世界已经改变，谁还在留恋?</p>
+]]></content>
+      <tags>
+        <tag>memory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>萌狐云服务器搭建博客命令整合</title>
+    <url>/2026/08/14/%E5%93%86%E8%90%8C%E7%8B%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h5 id="安装-nvm"><a href="#安装-nvm" class="headerlink" title="安装 nvm :"></a>安装 nvm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash</span><br></pre></td></tr></table></figure>
+<h5 id="安装-npm"><a href="#安装-npm" class="headerlink" title="安装 npm :"></a>安装 npm :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
+<h5 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo :"></a>安装 hexo :</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+<h5 id="创建个人博客"><a href="#创建个人博客" class="headerlink" title="创建个人博客:"></a>创建个人博客:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init [你想要的博客名]</span><br></pre></td></tr></table></figure>
+<h5 id="切换到博客根目录"><a href="#切换到博客根目录" class="headerlink" title="切换到博客根目录:"></a>切换到博客根目录:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> [你想要的博客名]</span><br></pre></td></tr></table></figure>
+<h5 id="安装所需包"><a href="#安装所需包" class="headerlink" title="安装所需包"></a>安装所需包</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h5 id="安装-buttferfly-主题"><a href="#安装-buttferfly-主题" class="headerlink" title="安装 buttferfly 主题:"></a>安装 buttferfly 主题:</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-theme-butterfly</span><br></pre></td></tr></table></figure>
+<h5 id="创建你的第一篇文章"><a href="#创建你的第一篇文章" class="headerlink" title="创建你的第一篇文章:"></a>创建你的第一篇文章:</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [文章名]</span><br></pre></td></tr></table></figure>
+<p>此时文章会被放在 <code>source/_posts</code> 目录中，以后随便找个markdown编辑器写</p>
+<h5 id="生产静态文件"><a href="#生产静态文件" class="headerlink" title="生产静态文件"></a>生产静态文件</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>此时网页文件会在 <code>public/</code> 下生成</p>
+<h5 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h5 id="这里放一下-hexo-和-butterfly-的网页"><a href="#这里放一下-hexo-和-butterfly-的网页" class="headerlink" title="这里放一下 hexo 和 butterfly 的网页"></a>这里放一下 hexo 和 butterfly 的网页</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://hexo.io</span><br><span class="line">https://butterfly.js.org</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="视频为一个人在三天完成，不妥之处见谅"><a href="#视频为一个人在三天完成，不妥之处见谅" class="headerlink" title="视频为一个人在三天完成，不妥之处见谅"></a>视频为一个人在三天完成，不妥之处见谅</h2><h3 id="配音-达妮娅-GPT-SoVITs"><a href="#配音-达妮娅-GPT-SoVITs" class="headerlink" title="配音: 达妮娅 GPT-SoVITs"></a>配音: 达妮娅 GPT-SoVITs</h3><h3 id="所使用到的软件-Kdenlive-Blender"><a href="#所使用到的软件-Kdenlive-Blender" class="headerlink" title="所使用到的软件: Kdenlive, Blender"></a>所使用到的软件: Kdenlive, Blender</h3>]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>教程</tag>
+        <tag>博客</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
