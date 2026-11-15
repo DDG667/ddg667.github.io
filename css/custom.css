@@ -11,6 +11,11 @@
   --ui-accent-2: #a371f7;
   --ui-accent-soft: rgba(74, 158, 255, .16);
   --ui-accent-gradient: linear-gradient(135deg, #4a9eff 0%, #a371f7 100%);
+  --ui-accent-border: rgba(74, 158, 255, .3);
+  --ui-accent-glow: rgba(74, 158, 255, .45);
+  --ui-radius-sm: 10px;
+  --ui-radius-lg: 18px;
+  --ui-ease: cubic-bezier(.22, 1, .36, 1);
   --ui-text-soft: rgba(255, 255, 255, .66);
   --ui-line: rgba(255, 255, 255, .08);
   --ui-glass-blur: 14px;
@@ -1153,7 +1158,9 @@ body {
 }
 
 .layout .pagination > *:not(.space):hover {
+  background: var(--ui-accent-soft);
   border-color: var(--ui-accent);
+  color: var(--ui-accent);
   transform: translateY(-2px);
 }
 
@@ -1867,6 +1874,218 @@ body::after {
   .music-eq span {
     width: 3px;
   }
+}
+
+/* --------------------------------------------------------------------------
+   21. Global consistency pass
+   -------------------------------------------------------------------------- */
+
+/* Content page headings share the same accent rule */
+#file-list h1,
+.music-page h1,
+.page-title {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+#file-list h1::after,
+.music-page h1::after,
+.page-title::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 56px;
+  height: 3px;
+  background: var(--ui-accent-gradient);
+  border-radius: 999px;
+  box-shadow: 0 0 12px var(--ui-accent-glow);
+  content: '';
+}
+
+.music-page h1 i {
+  color: var(--ui-accent);
+  filter: drop-shadow(0 0 10px var(--ui-accent-glow));
+}
+
+/* One hover language for compact icon buttons */
+#card-info-btn {
+  background: var(--ui-row-bg);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: var(--ui-radius-sm);
+  color: var(--font-color);
+}
+
+#card-info-btn:hover {
+  background: var(--ui-accent-gradient);
+  border-color: transparent;
+  box-shadow: 0 10px 24px -12px var(--ui-accent-glow);
+  color: #fff;
+}
+
+#mm-floating button:hover,
+#music-modal button:hover,
+.music-page button:hover {
+  background: var(--ui-accent-gradient);
+  border-color: transparent;
+  box-shadow: 0 8px 20px -10px var(--ui-accent-glow);
+  color: #fff;
+}
+
+/* Search dialog matches the card language */
+@media (min-width: 769px) {
+  .search-dialog {
+    border-radius: var(--ui-radius);
+  }
+}
+
+.local-search-input input {
+  border-radius: var(--ui-radius-sm);
+}
+
+#local-search .search-keyword {
+  padding: 0 2px;
+  background: var(--ui-accent-soft);
+  border-radius: 4px;
+  color: var(--ui-accent);
+  font-weight: 600;
+}
+
+/* Post footer: tags and copyright */
+#post .tag_share .post-meta__tags {
+  margin: 8px 8px 8px 0;
+  padding: 1px 12px;
+  background: var(--ui-row-bg);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: 999px;
+  color: var(--card-meta);
+}
+
+#post .tag_share .post-meta__tags:hover {
+  background: var(--ui-accent-soft);
+  border-color: var(--ui-accent);
+  color: var(--ui-accent);
+}
+
+#post .post-copyright {
+  background: var(--ui-row-bg);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: var(--ui-radius-sm);
+}
+
+#post .post-copyright:hover {
+  border-color: var(--ui-accent-soft);
+  box-shadow: var(--ui-shadow);
+}
+
+#post .post-copyright .post-copyright-meta {
+  color: var(--ui-accent);
+}
+
+/* Timeline dots use the same blue/purple accent */
+.article-sort {
+  border-left-color: var(--ui-line);
+}
+
+.article-sort-title::before,
+.article-sort-item::before {
+  background: var(--ui-glass-bg-strong);
+  border-color: var(--ui-accent);
+}
+
+.article-sort-item.year::before {
+  border-color: var(--ui-accent-2);
+}
+
+.article-sort-title:hover::before,
+.article-sort-item:hover::before {
+  border-color: var(--ui-accent-2);
+}
+
+.article-sort-title::after {
+  background: linear-gradient(180deg, var(--ui-accent), transparent);
+}
+
+/* Mobile sidebar uses the same glass and accent states */
+#sidebar #sidebar-menus {
+  background: var(--ui-glass-bg-strong);
+  border-left: 1px solid var(--ui-glass-border);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+#sidebar #sidebar-menus .menus_items {
+  background: var(--ui-glass-bg);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: var(--ui-radius);
+  box-shadow: var(--ui-shadow);
+}
+
+#sidebar #sidebar-menus .menus_items .site-page:hover {
+  background: var(--ui-accent-soft);
+  box-shadow: none;
+  color: var(--ui-accent);
+}
+
+#sidebar #sidebar-menus .menus_items .site-page.active {
+  background: var(--ui-accent-soft);
+  color: var(--ui-accent);
+}
+
+#sidebar #sidebar-menus .site-data .length-num {
+  color: var(--text-highlight-color);
+  font-weight: 700;
+}
+
+/* Prev/next post card matches the glass cards instead of a flat blue block */
+#pagination.pagination-post .pagination-related {
+  background: var(--ui-glass-bg-strong);
+  border: 1px solid var(--ui-glass-border);
+}
+
+#pagination.pagination-post .pagination-related .cover {
+  background: var(--ui-accent-gradient) !important;
+  opacity: .28;
+}
+
+#pagination.pagination-post .pagination-related:hover .cover {
+  opacity: .42;
+}
+
+[data-theme='light'] #pagination.pagination-post .pagination-related .cover {
+  opacity: .55;
+}
+
+[data-theme='light'] #pagination.pagination-post .pagination-related:hover .cover {
+  opacity: .68;
+}
+
+#pagination.pagination-post .pagination-related .info-1 .info-item-1 {
+  color: rgba(255, 255, 255, .82);
+}
+
+/* Share buttons join the same circular glass icon language */
+#post .post-share .social-share-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 3px;
+  background: var(--ui-row-bg) !important;
+  border: 1px solid var(--ui-glass-border);
+  border-radius: 50%;
+  color: var(--card-meta) !important;
+  font-size: 1.05em;
+  line-height: 1;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+#post .post-share .social-share-icon:hover {
+  background: var(--ui-accent-gradient) !important;
+  border-color: transparent;
+  box-shadow: 0 8px 20px -10px var(--ui-accent-glow);
+  color: #fff !important;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
