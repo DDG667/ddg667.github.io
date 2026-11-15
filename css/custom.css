@@ -602,8 +602,8 @@
   color: #fff;
 }
 
-#card-toc .toc-content .toc-link.active,
-#card-toc .toc-content .toc-link:hover {
+#aside-content #card-toc .toc-content .toc-link.active,
+#aside-content #card-toc .toc-content .toc-link:hover {
   color: var(--ui-accent);
 }
 
@@ -1135,7 +1135,7 @@ body {
   text-decoration: none;
 }
 
-#card-toc .toc-content .toc-link.active {
+#aside-content #card-toc .toc-content .toc-link.active {
   background: var(--ui-accent-soft);
   box-shadow: inset 2px 0 0 var(--ui-accent);
   color: var(--ui-accent);
@@ -1357,7 +1357,7 @@ body::after {
     animation: ui-title-shimmer 9s ease-in-out infinite;
   }
 
-  #aside-content .item-headline span {
+  #aside-content .item-headline > span:not(.toc-percentage) {
     background: linear-gradient(100deg, var(--text-highlight-color) 20%, var(--ui-accent) 120%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -1709,6 +1709,150 @@ body::after {
   }
 }
 
+/* --------------------------------------------------------------------------
+   20. Parallax hero, TOC progress and glass post meta
+   -------------------------------------------------------------------------- */
+#page-header.full_page {
+  background-position: calc(50% + var(--hero-mx, 0) * 8px) calc(50% + var(--hero-my, 0) * 8px);
+  transition: background-position .35s ease-out;
+}
+
+#page-header.full_page #site-info {
+  transform: translate3d(calc(var(--hero-mx, 0) * 14px), calc(var(--hero-my, 0) * 10px), 0);
+  transition: transform .25s ease-out;
+  will-change: transform;
+}
+
+#page-header.full_page #scroll-down {
+  z-index: 3;
+}
+
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(360px circle at var(--hx, 50%) var(--hy, 40%), rgba(130, 190, 255, .18), transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease;
+  mix-blend-mode: screen;
+}
+
+#page-header.full_page:hover .hero-spotlight {
+  opacity: 1;
+}
+
+/* Reading progress inside the TOC card */
+#card-toc .item-headline {
+  position: relative;
+}
+
+#card-toc .item-headline::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--toc-progress, 0%);
+  height: 2px;
+  background: var(--ui-accent-gradient);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(74, 158, 255, .55);
+  content: '';
+  transition: width .25s ease-out;
+}
+
+#aside-content #card-toc .toc-percentage {
+  float: none;
+  margin: 0 0 0 auto;
+  padding: 2px 8px;
+  background: var(--ui-accent-soft);
+  border: 1px solid var(--ui-glass-border);
+  border-radius: 999px;
+  color: var(--ui-accent);
+  font-size: .72rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+#aside-content #card-toc .toc-percentage:empty {
+  display: none;
+}
+
+#aside-content #card-toc .toc-percentage::after {
+  margin-left: 1px;
+  content: '%';
+  font-size: .85em;
+  opacity: .7;
+}
+
+/* Frosted metadata panel on the post hero */
+#page-header #post-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 12px 0 0 max(15px, calc((100% - 1200px) / 2 + 15px));
+  padding: 8px 14px;
+  background: rgba(8, 10, 14, .34);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px -16px rgba(0, 0, 0, .9);
+  color: rgba(255, 255, 255, .8);
+  text-shadow: none;
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+}
+
+#page-header #post-meta a {
+  color: #fff;
+}
+
+#page-header #post-meta .post-meta-icon {
+  color: var(--ui-accent);
+}
+
+#page-header #post-meta .post-meta-separator {
+  color: rgba(255, 255, 255, .35);
+}
+
+#page-header #post-meta .post-meta-categories a {
+  display: inline-block;
+  margin: 1px 2px;
+  padding: 1px 7px;
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+#page-header #post-meta .post-meta-categories a:hover {
+  background: var(--ui-accent);
+  border-color: transparent;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1300px) {
+  #page-header #post-meta {
+    margin-left: 30px;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  #page-header #post-meta {
+    margin-left: max(15px, calc((100% - 70%) / 2 + 15px));
+  }
+}
+
+@media (max-width: 768px) {
+  #page-header #post-meta {
+    padding: 6px 10px;
+    font-size: .8rem;
+  }
+}
+
 @media (max-width: 520px) {
   #recent-posts .recent-post-item .article-title::before {
     top: 2px;
@@ -1787,5 +1931,17 @@ body::after {
   .music-eq span,
   .type-404 .error_title {
     animation: none !important;
+  }
+
+  #page-header.full_page {
+    background-position: center !important;
+  }
+
+  #page-header.full_page #site-info {
+    transform: none !important;
+  }
+
+  .hero-spotlight {
+    display: none !important;
   }
 }

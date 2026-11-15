@@ -512,13 +512,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!($article && (isToc || isAnchor))) return
 
-    let $tocLink, $cardToc, autoScrollToc, $tocPercentage, isExpand
+    let $tocLink, $cardToc, autoScrollToc, $tocPercentage, $tocCard, isExpand
 
     if (isToc) {
       const $cardTocLayout = document.getElementById('card-toc')
       $cardToc = $cardTocLayout.querySelector('.toc-content')
       $tocLink = $cardToc.querySelectorAll('.toc-link')
       $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
+      $tocCard = $cardTocLayout
       isExpand = $cardToc.classList.contains('is-expand')
 
       // toc元素點擊
@@ -615,7 +616,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const tocScrollFn = btf.throttle(() => {
       const currentTop = window.scrollY || document.documentElement.scrollTop
       if (isToc && GLOBAL_CONFIG.percent.toc) {
-        $tocPercentage.textContent = btf.getScrollPercent(currentTop, $article)
+        const percent = btf.getScrollPercent(currentTop, $article)
+        $tocPercentage.textContent = percent
+        if ($tocCard) $tocCard.style.setProperty('--toc-progress', percent + '%')
       }
       findHeadPosition(currentTop)
     }, 100)
