@@ -1480,6 +1480,88 @@ body::after {
   box-shadow: 0 0 0 1px var(--ui-accent), 0 8px 26px -12px rgba(74, 158, 255, .65);
 }
 
+/* --------------------------------------------------------------------------
+   18. Final details
+   -------------------------------------------------------------------------- */
+#page-header #nav .site-page.active:after {
+  width: 100%;
+}
+
+#page-header #nav .site-page.active {
+  color: var(--ui-accent);
+}
+
+#page-header.full_page:not(.nav-fixed) #nav .site-page.active {
+  color: #d6ebff;
+}
+
+#recent-posts .recent-post-item .article-meta-wrap .post-meta-readtime {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--card-meta);
+  font-size: .78rem;
+}
+
+#recent-posts .recent-post-item .article-meta-wrap .post-meta-readtime i {
+  font-size: .9em;
+}
+
+#article-container table tbody tr:hover {
+  background: var(--ui-accent-soft);
+}
+
+#article-container img {
+  transition: transform .4s cubic-bezier(.22, 1, .36, 1), box-shadow .4s ease;
+}
+
+#article-container img:hover {
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, .7);
+  transform: translateY(-2px) scale(1.005);
+}
+
+/* 404 */
+.type-404 .error-content {
+  background: var(--ui-glass-bg-strong);
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .type-404 .error_title {
+    background: var(--ui-accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 12px 34px rgba(74, 158, 255, .35));
+    animation: ui-float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes ui-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+/* Search results */
+#local-search .local-search-hit-item {
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background .2s ease;
+}
+
+#local-search .local-search-hit-item:hover {
+  background: var(--ui-row-bg-hover);
+}
+
+#local-search .search-result-title {
+  color: var(--text-highlight-color);
+}
+
 @media (max-width: 768px) {
   :root {
     --ui-glass-bg: rgba(17, 19, 25, .8);
@@ -1531,7 +1613,8 @@ body::after {
   body::after,
   #page-header.full_page #site-info::before,
   #page-header.full_page #site-title,
-  #page-header.full_page #scroll-down .scroll-down-effects::after {
+  #page-header.full_page #scroll-down .scroll-down-effects::after,
+  .type-404 .error_title {
     animation: none !important;
   }
 }
